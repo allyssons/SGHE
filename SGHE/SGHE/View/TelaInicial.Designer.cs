@@ -1,5 +1,5 @@
 ﻿namespace SGHE {
-    partial class Form1 {
+    partial class SGHE {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -34,6 +35,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.manipularFeriadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.manipularFeriadosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.manipularFeriadosToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // monthCalendar1
@@ -127,12 +135,51 @@
             this.button2.Text = "Finalizar";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manipularFeriadosToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(176, 26);
+            // 
+            // manipularFeriadosToolStripMenuItem
+            // 
+            this.manipularFeriadosToolStripMenuItem.Name = "manipularFeriadosToolStripMenuItem";
+            this.manipularFeriadosToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.manipularFeriadosToolStripMenuItem.Text = "Manipular Feriados";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manipularFeriadosToolStripMenuItem1});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(584, 24);
+            this.menuStrip1.TabIndex = 12;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // manipularFeriadosToolStripMenuItem1
+            // 
+            this.manipularFeriadosToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manipularFeriadosToolStripMenuItem2});
+            this.manipularFeriadosToolStripMenuItem1.Name = "manipularFeriadosToolStripMenuItem1";
+            this.manipularFeriadosToolStripMenuItem1.Size = new System.Drawing.Size(120, 20);
+            this.manipularFeriadosToolStripMenuItem1.Text = "Manipular Feriados";
+            // 
+            // manipularFeriadosToolStripMenuItem2
+            // 
+            this.manipularFeriadosToolStripMenuItem2.Name = "manipularFeriadosToolStripMenuItem2";
+            this.manipularFeriadosToolStripMenuItem2.Size = new System.Drawing.Size(175, 22);
+            this.manipularFeriadosToolStripMenuItem2.Text = "Manipular Feriados";
+            this.manipularFeriadosToolStripMenuItem2.Click += new System.EventHandler(this.manipularFeriadosToolStripMenuItem2_Click);
+            // 
+            // SGHE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(584, 284);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -144,8 +191,12 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.monthCalendar1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.MainMenuStrip = this.menuStrip1;
+            this.Name = "SGHE";
+            this.Text = "SGHE";
+            this.contextMenuStrip1.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -164,6 +215,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem manipularFeriadosToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem manipularFeriadosToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem manipularFeriadosToolStripMenuItem2;
     }
 }
 
