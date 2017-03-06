@@ -110,7 +110,7 @@ namespace SGHE.Model {
                 dia = 31 - diaAux;
             }
             
-            return new Feriado("Carnaval", dia - 1, mes);
+            return new Feriado("Carnaval", dia, mes);
         }
 
         public Feriado SetCorpusChrist(int dia, int mes) {
@@ -152,7 +152,7 @@ namespace SGHE.Model {
                 }
             }
 
-            return (new Feriado("Corpus Christ", dia - 1, mes));
+            return (new Feriado("Corpus Christ", dia, mes));
         }
 
         public void setFeriados() {

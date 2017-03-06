@@ -12,11 +12,12 @@ using SGHE.Controller;
 
 namespace SGHE.View {
     public partial class ManipularFeriados : Form {
-        static int ano = 2020;
+        static int ano = 2018;
         Calendario c = new Calendario(ano);
+        int flagAlteracao = 0;
         public ManipularFeriados() {
             InitializeComponent();
-            c.setFeriados();
+            //c.setFeriados(); //Primeiro set de feriados
             c = ControladorFeriados.CarregaFeriados(c);
             ChecaFeriadosMoveis();
             LimpaTabela();
@@ -27,9 +28,25 @@ namespace SGHE.View {
             Feriado f = c.SetPascoa();
             int a = c.Feriados.IndexOf(new Model.Feriado("Pascoa", 0, 0));
             Feriado fA = c.Feriados[a];
-           if(f != fA) {
+            if(f != fA) {
                 c.Feriados.Remove(fA);
                 c.Feriados.Add(f);
+            }
+
+            Feriado f2 = c.SetCarnaval(f.Dia, f.Mes, ano);
+            a = c.Feriados.IndexOf(new Model.Feriado("Carnaval", 0, 0));
+            fA = c.Feriados[a];
+            if(f2 != fA) {
+                c.Feriados.Remove(fA);
+                c.Feriados.Add(f2);
+            }
+
+            Feriado f3 = c.SetCorpusChrist(f.Dia, f.Mes);
+            a = c.Feriados.IndexOf(new Model.Feriado("Corpus Christ", 0, 0));
+            fA = c.Feriados[a];
+            if (f3 != fA) {
+                c.Feriados.Remove(fA);
+                c.Feriados.Add(f3);
             }
         }
 
@@ -48,6 +65,7 @@ namespace SGHE.View {
              for (int i = 0; i < c.Feriados.Count; i++) {
                 dataGridView1.Rows.Add(c.Feriados[i].Nome, c.Feriados[i].Dia + 1, c.Feriados[i].Mes + 1);
             }
+            dataGridView1.Sort(dataGridView1.Columns[2], ListSortDirection.Ascending);
         }
 
         private void button2_Click(object sender, EventArgs e) {
@@ -65,6 +83,7 @@ namespace SGHE.View {
                                         feriadoTB.Text, c);
                     LimpaTabela();
                     SetaTabelaFeriados();
+                    flagAlteracao = 1;
                 } else {
                     MessageBox.Show("Data inválida, tente com outros valores");
                 }
@@ -82,6 +101,7 @@ namespace SGHE.View {
                 c = ControladorFeriados.RemoveFeriado(c, f);
                 LimpaTabela();
                 SetaTabelaFeriados();
+                flagAlteracao = 1;
             } else {
                 MessageBox.Show("Selecione um feriado a ser deletado!");
             }
@@ -91,6 +111,25 @@ namespace SGHE.View {
             if (ControladorFeriados.SalvaFeriados(c)) {
                 MessageBox.Show("Lista de feriados salva com sucesso!");
             }
+        }
+
+        private void ManipularFeriados_FormClosing(object sender, FormClosingEventArgs e) {
+            if(flagAlteracao == 1) {
+                DialogResult dlg = MessageBox.Show("Deseja salvar as alterações?", "Question", MessageBoxButtons.YesNo);
+                if (dlg == DialogResult.Yes) {
+                    if (ControladorFeriados.SalvaFeriados(c)) {
+                        MessageBox.Show("Lista de feriados salva com sucesso!");
+                    }
+                    e.Cancel = false;
+                    if (dlg == DialogResult.No) {
+                        e.Cancel = false;
+                    }
+                }
+            }
+        }
+
+        private void comboBox1_KeyPress(object sender, KeyPressEventArgs e) {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
         }
     }
 }
