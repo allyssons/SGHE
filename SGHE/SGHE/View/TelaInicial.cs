@@ -26,6 +26,16 @@ namespace SGHE {
             ManipularFeriados a = new ManipularFeriados();
             a.Show();
         }
+
+        private void cadastrarNovoFuncionárioToolStripMenuItem_Click(object sender, EventArgs e) {
+            panel1.Controls.Clear();
+            CadastroFuncionario a = new CadastroFuncionario(panel1);
+            panel1.Controls.Add(a);
+        }
+
+        private void panel1_ControlRemoved(object sender, ControlEventArgs e) {
+
+        }
     }
 
 }
