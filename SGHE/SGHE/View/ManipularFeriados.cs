@@ -12,11 +12,11 @@ using SGHE.Controller;
 
 namespace SGHE.View {
     public partial class ManipularFeriados : Form {
-        static int ano = 2018;
+        static int ano = 2020;
         Calendario c = new Calendario(ano);
         public ManipularFeriados() {
             InitializeComponent();
-            //c.setFeriados();
+            c.setFeriados();
             c = ControladorFeriados.CarregaFeriados(c);
             ChecaFeriadosMoveis();
             LimpaTabela();

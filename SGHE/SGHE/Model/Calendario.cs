@@ -65,7 +65,6 @@ namespace SGHE.Model {
         }
 
         public Feriado SetPascoa() {
-            //FERIADOS MOVEIS
             int dia;
             int mes;
             int a = ano % 19;
@@ -89,6 +88,73 @@ namespace SGHE.Model {
             return new Feriado("Pascoa", dia - 1, mes);
         }
 
+        public Feriado SetCarnaval(int dia, int mes, int ano) {
+
+            int diaAux = 47 - dia;
+            mes -= 1;
+            if(mes == 1) {
+                if (ano % 4 == 0) {
+                    dia = 29 - diaAux;
+                }else {
+                    dia = 28 - diaAux;
+                }
+            }else if (diaAux >= 31) {
+                diaAux = diaAux - 31;
+                mes -= 1;
+                if (ano % 4 == 0) {
+                    dia = 29 - diaAux;
+                } else {
+                    dia = 28 - diaAux;
+                }
+            } else {
+                dia = 31 - diaAux;
+            }
+            
+            return new Feriado("Carnaval", dia - 1, mes);
+        }
+
+        public Feriado SetCorpusChrist(int dia, int mes) {
+            int diaAux;
+            int h = 60;
+            if(mes == 2) {
+                diaAux = 31 - dia;
+                mes++;
+                h -= diaAux;
+                if(h <= 30) {
+                    dia = h;
+                }else {
+                    h -= 30;
+                    mes++;
+                    if(h <= 31) {
+                        dia = h;
+                    }else {
+                        h -= 31;
+                        mes++;
+                        dia = h;
+                    }
+                }
+            }else {
+                diaAux = 30 - dia;
+                mes++;
+                h -= diaAux;
+                if (h <= 31) {
+                    dia = h;
+                } else {
+                    h -= 31;
+                    mes++;
+                    if (h <= 30) {
+                        dia = h;
+                    } else {
+                        h -= 30;
+                        mes++;
+                        dia = h;
+                    }
+                }
+            }
+
+            return (new Feriado("Corpus Christ", dia - 1, mes));
+        }
+
         public void setFeriados() {
             //FERIADOS FIXOS
             Feriados.Add(new Feriado("Ano Novo", 0, 0));
@@ -99,9 +165,12 @@ namespace SGHE.Model {
             Feriados.Add(new Feriado("Finados", 1, 10));
             Feriados.Add(new Feriado("Proclamacao da Republica", 14, 10));
             Feriados.Add(new Feriado("Natal", 24, 11));
-            
-            Feriados.Add(SetPascoa());
 
+            //FERIADOS MOVEIS
+            Feriado pascoa = SetPascoa();
+            Feriados.Add(pascoa);
+            Feriados.Add(SetCarnaval(pascoa.Dia+1, pascoa.Mes, ano));
+            Feriados.Add(SetCorpusChrist(pascoa.Dia + 1, pascoa.Mes));
         }
     }
 }
