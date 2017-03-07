@@ -30,8 +30,8 @@
             this.manipularFeriadosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.manipularFeriadosToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.realizarCadastroHoraExtraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.cadastrarNovoFuncionárioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -52,8 +52,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.manipularFeriadosToolStripMenuItem1,
-            this.realizarCadastroHoraExtraToolStripMenuItem});
+            this.realizarCadastroHoraExtraToolStripMenuItem,
+            this.manipularFeriadosToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(666, 24);
@@ -83,6 +83,13 @@
             this.realizarCadastroHoraExtraToolStripMenuItem.Size = new System.Drawing.Size(166, 20);
             this.realizarCadastroHoraExtraToolStripMenuItem.Text = "Realizar Cadastro Hora extra";
             // 
+            // cadastrarNovoFuncionárioToolStripMenuItem
+            // 
+            this.cadastrarNovoFuncionárioToolStripMenuItem.Name = "cadastrarNovoFuncionárioToolStripMenuItem";
+            this.cadastrarNovoFuncionárioToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.cadastrarNovoFuncionárioToolStripMenuItem.Text = "Cadastrar novo funcionário";
+            this.cadastrarNovoFuncionárioToolStripMenuItem.Click += new System.EventHandler(this.cadastrarNovoFuncionárioToolStripMenuItem_Click);
+            // 
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(3, 25);
@@ -90,13 +97,6 @@
             this.panel1.Size = new System.Drawing.Size(663, 414);
             this.panel1.TabIndex = 13;
             this.panel1.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.panel1_ControlRemoved);
-            // 
-            // cadastrarNovoFuncionárioToolStripMenuItem
-            // 
-            this.cadastrarNovoFuncionárioToolStripMenuItem.Name = "cadastrarNovoFuncionárioToolStripMenuItem";
-            this.cadastrarNovoFuncionárioToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.cadastrarNovoFuncionárioToolStripMenuItem.Text = "Cadastrar novo funcionário";
-            this.cadastrarNovoFuncionárioToolStripMenuItem.Click += new System.EventHandler(this.cadastrarNovoFuncionárioToolStripMenuItem_Click);
             // 
             // SGHE
             // 

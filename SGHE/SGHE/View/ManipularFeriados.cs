@@ -12,7 +12,8 @@ using SGHE.Controller;
 
 namespace SGHE.View {
     public partial class ManipularFeriados : Form {
-        static int ano = 2018;
+        static string anoString = Convert.ToDateTime(DateTime.Now.ToString()).Year.ToString();
+        static int ano = Int32.Parse(anoString);
         Calendario c = new Calendario(ano);
         int flagAlteracao = 0;
         public ManipularFeriados() {
@@ -130,6 +131,10 @@ namespace SGHE.View {
 
         private void comboBox1_KeyPress(object sender, KeyPressEventArgs e) {
             e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+
+        private void feriadoTB_TextChanged(object sender, EventArgs e) {
+
         }
     }
 }
