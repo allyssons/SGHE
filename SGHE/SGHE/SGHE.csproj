@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\ControladorFeriados.cs" />
+    <Compile Include="Controller\ControladorHoras.cs" />
     <Compile Include="Model\Calendario.cs" />
     <Compile Include="Model\Dia.cs" />
     <Compile Include="Model\Feriado.cs" />

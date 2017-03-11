@@ -195,7 +195,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "CadastroHoras";
-            this.Size = new System.Drawing.Size(596, 410);
+            this.Size = new System.Drawing.Size(612, 410);
             this.ResumeLayout(false);
             this.PerformLayout();
 

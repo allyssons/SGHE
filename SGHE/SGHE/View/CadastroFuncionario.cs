@@ -57,10 +57,19 @@ namespace SGHE.View {
              if(funcionarioTB.Text == "" || salarioTB.Text == "") {
                 MessageBox.Show("Valores dos campos estão nulos!");
             } else{
+                string text1 = horaTB.Text;
                 panel1.Controls.Clear();
+                string horaA = text1.Split(':')[0];
+                string minutoA = text1.Split(':')[1];
+                int hora1 = Int32.Parse(horaA);
+                int minuto1 = 0;
+                if(minutoA == "") minuto1 = 0;
+                else minuto1 = Int32.Parse(minutoA);
+
+                minuto1 += hora1 * 60;
                 CadastroHoras a = new CadastroHoras(funcionarioTB.Text, Convert.ToDouble(salarioTB.Text),
                                                     Convert.ToDouble(textBox2.Text), Convert.ToDouble(textBox3.Text),
-                                                    Convert.ToDouble(textBox4.Text));                
+                                                    Convert.ToDouble(textBox4.Text), minuto1);                
                 panel1.Controls.Add(a);
             }
         }
@@ -71,5 +80,18 @@ namespace SGHE.View {
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
+
+        private void label6_Click(object sender, EventArgs e) {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e) {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e) {
+
+        }
+
     }
 }
