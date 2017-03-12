@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,22 +41,77 @@ namespace SGHE.View {
             }else {
                 var horasTrabalhadasInicial = ControladorHoras.CalculaHoras(maskedTextBox1.Text, maskedTextBox2.Text, 
                     maskedTextBox3.Text, maskedTextBox4.Text);
-                MessageBox.Show("Horas totais trabalhadas"+horasTrabalhadasInicial);
+                //MessageBox.Show("Horas totais trabalhadas"+horasTrabalhadasInicial);
 
                 var horasExtras = ControladorHoras.CalculaHorasExtras(horasTrabalhadasInicial, _minutoExtra);
-                MessageBox.Show("Horas extras trabalhas"+horasExtras);
+                //MessageBox.Show("Horas extras trabalhas"+horasExtras);
 
                 var horasTrabalhadasNoite = ControladorHoras.IdentificaHorasNoturnas(maskedTextBox1.Text, maskedTextBox2.Text,
                     maskedTextBox3.Text, maskedTextBox4.Text);
-                MessageBox.Show("Horas noturnas trabalhadas"+horasTrabalhadasNoite);
+                //MessageBox.Show("Horas noturnas trabalhadas"+horasTrabalhadasNoite);
 
                 var horasNoturnas = ControladorHoras.CalculaHorasNoturnas(horasTrabalhadasNoite);
-                MessageBox.Show("Horas noturnas após transformação" + horasNoturnas);
+                //MessageBox.Show("Horas noturnas após transformação" + horasNoturnas);
 
                 var horasTrabalhadasNormais = horasTrabalhadasInicial - horasTrabalhadasNoite;
 
                 _diasRegistrados.Add(new DiaTrabalhado(horasExtras, horasTrabalhadasNormais, horasNoturnas));
 
+                int day = monthCalendar1.SelectionRange.Start.Day;
+                int month = monthCalendar1.SelectionRange.Start.Month;
+                int year = monthCalendar1.SelectionRange.Start.Year;
+
+                string data = day + "/" + month + "/" + year;
+
+                int horas = (int)(horasTrabalhadasInicial / 60);
+
+                double a = horasTrabalhadasInicial / 60;
+
+                a = a - horas;
+
+                int minutos = (int)(a / 0.016667);
+
+                DateTime date1 = new DateTime(year, month, day, horas, minutos, 0);
+                var horaNormal = date1.ToString("t",
+                                  CultureInfo.CreateSpecificCulture("pt-br"));
+
+                dataGridView1.Rows.Add(data, horaNormal, horasExtras, horasTrabalhadasNoite);
+
+                if (month == 2 && year % 4 == 0) {
+                    if (day == 29) {
+                        day = 1;
+                        month++;
+                    }
+                    else day++;
+                }else if (month == 2 && year % 4 != 0) {
+                    if (day == 28) {
+                        day = 1;
+                        month++;
+                    }
+                    else day++;
+                } else if (month == 4 || month == 6 || month == 9 || month == 11) {
+                    if (day == 30) {
+                        day = 1;
+                        month++;
+                    }
+                    else day++;
+                }
+                else {
+                    if (day == 31) {
+                        day = 1;
+                        if (month == 12) {
+                            month = 1;
+                            year++;
+                        }
+                        else month++;
+                    }
+                    else day++;
+                }
+
+                DateTime d = new DateTime(year, month, day);
+
+
+                monthCalendar1.SetDate(d);
             }
         }
 

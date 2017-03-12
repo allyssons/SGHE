@@ -38,11 +38,17 @@
             this.maskedTextBox4 = new System.Windows.Forms.MaskedTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HorasTrabalhadas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HorasExtras = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HorasNoturnas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(304, 364);
+            this.button2.Location = new System.Drawing.Point(329, 176);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 21;
@@ -160,7 +166,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(304, 225);
+            this.button1.Location = new System.Drawing.Point(329, 146);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 31;
@@ -172,14 +178,52 @@
             // 
             this.monthCalendar1.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.monthCalendar1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.monthCalendar1.Location = new System.Drawing.Point(401, 225);
+            this.monthCalendar1.Location = new System.Drawing.Point(426, 37);
+            this.monthCalendar1.MaxSelectionCount = 1;
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 32;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Data,
+            this.HorasTrabalhadas,
+            this.HorasExtras,
+            this.HorasNoturnas});
+            this.dataGridView1.Enabled = false;
+            this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView1.Location = new System.Drawing.Point(42, 250);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(444, 150);
+            this.dataGridView1.TabIndex = 33;
+            // 
+            // Data
+            // 
+            this.Data.HeaderText = "Data";
+            this.Data.Name = "Data";
+            // 
+            // HorasTrabalhadas
+            // 
+            this.HorasTrabalhadas.HeaderText = "Horas Trabalhadas";
+            this.HorasTrabalhadas.Name = "HorasTrabalhadas";
+            // 
+            // HorasExtras
+            // 
+            this.HorasExtras.HeaderText = "Horas Extras";
+            this.HorasExtras.Name = "HorasExtras";
+            // 
+            // HorasNoturnas
+            // 
+            this.HorasNoturnas.HeaderText = "Horas Noturnas";
+            this.HorasNoturnas.Name = "HorasNoturnas";
             // 
             // CadastroHoras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.maskedTextBox4);
@@ -196,7 +240,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "CadastroHoras";
-            this.Size = new System.Drawing.Size(662, 410);
+            this.Size = new System.Drawing.Size(662, 483);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,5 +264,10 @@
         private System.Windows.Forms.MaskedTextBox maskedTextBox4;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Data;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HorasTrabalhadas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HorasExtras;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HorasNoturnas;
     }
 }
