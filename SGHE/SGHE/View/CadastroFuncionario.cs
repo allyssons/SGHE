@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SGHE.View {
     public partial class CadastroFuncionario : UserControl {
-        Panel panel1;
+        private readonly Panel _panel1;
         public CadastroFuncionario(Panel panel) {
-            panel1 = panel;
+            _panel1 = panel;
             InitializeComponent();
         }
 
@@ -26,19 +26,19 @@ namespace SGHE.View {
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e) {
-            if ((!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8) && e.KeyChar != ',') {
+            if ((!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8) && e.KeyChar != ',') {
                 e.Handled = true;
             }
         }
 
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e) {
-            if ((!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8) && e.KeyChar != ',') {
+            if ((!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8) && e.KeyChar != ',') {
                 e.Handled = true;
             }
         }
 
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e) {
-            if ((!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8) && e.KeyChar != ',') {
+            if ((!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8) && e.KeyChar != ',') {
                 e.Handled = true;
             }
         }
@@ -48,31 +48,12 @@ namespace SGHE.View {
         }
 
         private void salarioTB_KeyPress(object sender, KeyPressEventArgs e) {
-            if ((!Char.IsDigit(e.KeyChar) && e.KeyChar != (char)8) && e.KeyChar != ',') {
+            if ((!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8) && e.KeyChar != ',') {
                 e.Handled = true;
             }
         }
 
-        private void button1_Click_1(object sender, EventArgs e) {
-             if(funcionarioTB.Text == "" || salarioTB.Text == "") {
-                MessageBox.Show("Valores dos campos estão nulos!");
-            } else{
-                string text1 = horaTB.Text;
-                panel1.Controls.Clear();
-                string horaA = text1.Split(':')[0];
-                string minutoA = text1.Split(':')[1];
-                int hora1 = Int32.Parse(horaA);
-                int minuto1 = 0;
-                if(minutoA == "") minuto1 = 0;
-                else minuto1 = Int32.Parse(minutoA);
 
-                minuto1 += hora1 * 60;
-                CadastroHoras a = new CadastroHoras(funcionarioTB.Text, Convert.ToDouble(salarioTB.Text),
-                                                    Convert.ToDouble(textBox2.Text), Convert.ToDouble(textBox3.Text),
-                                                    Convert.ToDouble(textBox4.Text), minuto1);                
-                panel1.Controls.Add(a);
-            }
-        }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
             if (keyData == Keys.Enter) {
                 button1.PerformClick();
@@ -81,17 +62,27 @@ namespace SGHE.View {
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void label6_Click(object sender, EventArgs e) {
 
+
+        private void button1_Click_2(object sender, EventArgs e) {
+            if (funcionarioTB.Text == "" || salarioTB.Text == "") {
+                MessageBox.Show("Valores dos campos estão nulos!");
+            } else {
+                string text1 = horaTB.Text;
+                _panel1.Controls.Clear();
+                string horaA = text1.Split(':')[0];
+                string minutoA = text1.Split(':')[1];
+                int hora1 = Int32.Parse(horaA);
+                int minuto1 = 0;
+                if (minutoA == "") minuto1 = 0;
+                else minuto1 = Int32.Parse(minutoA);
+
+                minuto1 += hora1 * 60;
+                CadastroHoras a = new CadastroHoras(funcionarioTB.Text, Convert.ToDouble(salarioTB.Text),
+                                                    Convert.ToDouble(textBox2.Text), Convert.ToDouble(textBox3.Text),
+                                                    Convert.ToDouble(textBox4.Text), minuto1);
+                _panel1.Controls.Add(a);
+            }
         }
-
-        private void label7_Click(object sender, EventArgs e) {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e) {
-
-        }
-
     }
 }

@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SGHE.Controller {
-    static class ControladorHoras {
+    internal static class ControladorHoras {
 
-        public static int calculaHoras(string text1, string text2, string text3, string text4) {
+        public static int CalculaHoras(string text1, string text2, string text3, string text4) {
             string horaA = text1.Split(':')[0];
             string minutoA = text1.Split(':')[1];
             int hora1 = Int32.Parse(horaA);
@@ -96,7 +96,7 @@ namespace SGHE.Controller {
             return minutosResultantes;
         }
 
-        public static int calculaHorasExtras(int minutosTrabalhados, int minutosPrimeroExtra) {
+        public static int CalculaHorasExtras(int minutosTrabalhados, int minutosPrimeroExtra) {
 
             int minutosExtras = 0;
 
@@ -112,10 +112,10 @@ namespace SGHE.Controller {
             return minutosExtras;
         }
 
-        public static int identificaHorasNoturnas (string text1, string text2, string text3, string text4) {
+        public static int IdentificaHorasNoturnas (string text1, string text2, string text3, string text4) {
             string horaA = text1.Split(':')[0];
             string minutoA = text1.Split(':')[1];
-            int hora1 = Int32.Parse(horaA);
+            int hora1 = int.Parse(horaA);
             int minuto1;
             if (minutoA == "") minuto1 = 0;
             else minuto1 = Int32.Parse(minutoA);
@@ -218,17 +218,42 @@ namespace SGHE.Controller {
             Console.WriteLine("HORA2:" + b);
             Console.WriteLine("HORA3:" + c);
             Console.WriteLine("HORA4:" + d);
-            minutosResultantes = calculaHoras(a, b, c, d);
+            minutosResultantes = CalculaHoras(a, b, c, d);
 
             return minutosResultantes;
         }
 
-        public static int calculaHorasNoturnas(int minutosTrabalhados) {
+        public static double CalculaHorasNoturnas(int minutosTrabalhados) {
+            int horas = (int) (minutosTrabalhados / 52.5);
 
-           
+            double a = minutosTrabalhados / 52.5;
+
+            a = a - horas;
+
+            int minutos = (int) (a / 0.016667);
+
+            a = a / 0.016667;
+
+            a = a - minutos;
+            
+            double resul = (horas * 60 + minutos) + a;
+
+            return resul;
+
+
+        }
+
+        public static double CalculaValorHoraExtra(int horasExtras, double percentHEI, double percentHE, int segundaHE, double salario) {
             return 1;
+        }
 
+        public static double CalculaValorHoraNoturna(double horaNoturna, double percentHN, double salario) {
+            return 1;
+        }
 
+        public static double CalculaValorSalario(double salario, double salarioHE, double salarioHN, int horasTrabalhadas) {
+
+            return 1;
         }
     }
 }

@@ -5,73 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SGHE.Model {
-    class Calendario {
-        private List<Mes> meses;
-        private List<Feriado> feriados;
-        private int ano;
+    internal class Calendario {
 
-        internal List<Mes> Meses {
-            get {
-                return meses;
-            }
+        public int Ano { get; set; }
 
-            set {
-                meses = value;
-            }
-        }
-
-        public int Ano {
-            get {
-                return ano;
-            }
-
-            set {
-                ano = value;
-            }
-        }
-
-        internal List<Feriado> Feriados {
-            get {
-                return feriados;
-            }
-
-            set {
-                feriados = value;
-            }
-        }
+        internal List<Feriado> Feriados { get; set; }
 
         public Calendario(int ano) {
-            this.ano = ano;
+            this.Ano = ano;
             this.Feriados = new List<Feriado>();
-            this.meses = new List<Mes>(12);
-            Mes a = new Model.Mes(31);
-            meses.Add(new Mes(31));
-            if (ano % 4 == 0) {
-                meses.Add(new Mes(29));
-            } else {
-                meses.Add(new Mes(28));
-            }
-            meses.Add(new Mes(31));
-            meses.Add(new Mes(30));
-            meses.Add(new Mes(31));
-            meses.Add(new Mes(30));
-            meses.Add(new Mes(31));
-            meses.Add(new Mes(31));
-            meses.Add(new Mes(30));
-            meses.Add(new Mes(31));
-            meses.Add(new Mes(30));
-            meses.Add(new Mes(31));
             //setFeriados();
         }
 
         public Feriado SetPascoa() {
             int dia;
             int mes;
-            int a = ano % 19;
-            int b = ano % 4;
-            int c = ano % 7;
-            int d = ((19 * a) + 24) % 30;
-            int e = ((2 * b) + (4 * c) + (6 * d) + (5)) % 7;
+            var a = Ano % 19;
+            var b = Ano % 4;
+            var c = Ano % 7;
+            var d = ((19 * a) + 24) % 30;
+            var e = ((2 * b) + (4 * c) + (6 * d) + (5)) % 7;
             if (d + e < 10) {
                 dia = d + e + 22;
                 mes = 2;
@@ -90,7 +43,7 @@ namespace SGHE.Model {
 
         public Feriado SetCarnaval(int dia, int mes, int ano) {
 
-            int diaAux = 47 - dia;
+            var diaAux = 47 - dia;
             mes -= 1;
             if(mes == 1) {
                 if (ano % 4 == 0) {
@@ -115,7 +68,7 @@ namespace SGHE.Model {
 
         public Feriado SetCorpusChrist(int dia, int mes) {
             int diaAux;
-            int h = 60;
+            var h = 60;
             if(mes == 2) {
                 diaAux = 31 - dia;
                 mes++;
@@ -155,7 +108,7 @@ namespace SGHE.Model {
             return (new Feriado("Corpus Christ", dia, mes));
         }
 
-        public void setFeriados() {
+        public void SetFeriados() {
             //FERIADOS FIXOS
             Feriados.Add(new Feriado("Ano Novo", 0, 0));
             Feriados.Add(new Feriado("Tiradentes", 20, 3));
@@ -167,9 +120,9 @@ namespace SGHE.Model {
             Feriados.Add(new Feriado("Natal", 24, 11));
 
             //FERIADOS MOVEIS
-            Feriado pascoa = SetPascoa();
+            var pascoa = SetPascoa();
             Feriados.Add(pascoa);
-            Feriados.Add(SetCarnaval(pascoa.Dia+1, pascoa.Mes, ano));
+            Feriados.Add(SetCarnaval(pascoa.Dia+1, pascoa.Mes, Ano));
             Feriados.Add(SetCorpusChrist(pascoa.Dia + 1, pascoa.Mes));
         }
     }
