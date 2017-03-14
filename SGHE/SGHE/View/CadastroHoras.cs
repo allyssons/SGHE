@@ -34,6 +34,14 @@ namespace SGHE.View {
             _salario = salario;
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
+            if (keyData == Keys.Enter) {
+                button1.PerformClick();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         private void button1_Click(object sender, EventArgs e) {
             if (maskedTextBox1.Text == "  :" || maskedTextBox2.Text == "  :" ||
                 maskedTextBox3.Text == "  :" || maskedTextBox4.Text == "  :") {
@@ -43,17 +51,17 @@ namespace SGHE.View {
                     maskedTextBox3.Text, maskedTextBox4.Text);
                 //MessageBox.Show("Horas totais trabalhadas"+horasTrabalhadasInicial);
 
-                var horasExtras = ControladorHoras.CalculaHorasExtras(horasTrabalhadasInicial, _minutoExtra);
-                //MessageBox.Show("Horas extras trabalhas"+horasExtras);
-
                 var horasTrabalhadasNoite = ControladorHoras.IdentificaHorasNoturnas(maskedTextBox1.Text, maskedTextBox2.Text,
                     maskedTextBox3.Text, maskedTextBox4.Text);
                 //MessageBox.Show("Horas noturnas trabalhadas"+horasTrabalhadasNoite);
 
                 var horasNoturnas = ControladorHoras.CalculaHorasNoturnas(horasTrabalhadasNoite);
                 //MessageBox.Show("Horas noturnas após transformação" + horasNoturnas);
+                
+                var horasExtras = ControladorHoras.CalculaHorasExtras((horasTrabalhadasInicial-horasTrabalhadasNoite)+horasNoturnas, _minutoExtra);
+                //MessageBox.Show("Horas extras trabalhas"+horasExtras);
 
-                var horasTrabalhadasNormais = horasTrabalhadasInicial - horasTrabalhadasNoite;
+                var horasTrabalhadasNormais = (horasTrabalhadasInicial - horasTrabalhadasNoite) - horasExtras;
 
                 _diasRegistrados.Add(new DiaTrabalhado(horasExtras, horasTrabalhadasNormais, horasNoturnas));
 
@@ -63,9 +71,9 @@ namespace SGHE.View {
 
                 string data = day + "/" + month + "/" + year;
 
-                int horas = (int)(horasTrabalhadasInicial / 60);
+                int horas = (int)(((horasTrabalhadasInicial - horasTrabalhadasNoite) + horasNoturnas) / 60);
 
-                double a = horasTrabalhadasInicial / 60;
+                double a = ((horasTrabalhadasInicial - horasTrabalhadasNoite) + horasNoturnas) / 60;
 
                 a = a - horas;
 
@@ -75,7 +83,35 @@ namespace SGHE.View {
                 var horaNormal = date1.ToString("t",
                                   CultureInfo.CreateSpecificCulture("pt-br"));
 
-                dataGridView1.Rows.Add(data, horaNormal, horasExtras, horasTrabalhadasNoite);
+                /////////////////////////
+
+                horas = (int)(horasExtras / 60);
+
+                a = (horasExtras / 60);
+
+                a = a - horas;
+
+                minutos = (int)(a / 0.016667);
+
+                DateTime date2 = new DateTime(year, month, day, horas, minutos, 0);
+                var horaExtra = date2.ToString("t",
+                                  CultureInfo.CreateSpecificCulture("pt-br"));
+                /////////////////////////
+
+                horas = (int)(horasNoturnas / 60);
+
+                a = (horasNoturnas / 60);
+
+                a = a - horas;
+
+                minutos = (int)(a / 0.016667);
+
+                DateTime date3 = new DateTime(year, month, day, horas, minutos, 0);
+                var horaNoite = date3.ToString("t",
+                                  CultureInfo.CreateSpecificCulture("pt-br"));
+
+
+                dataGridView1.Rows.Add(data, horaNormal, horaExtra, horaNoite);
 
                 if (month == 2 && year % 4 == 0) {
                     if (day == 29) {

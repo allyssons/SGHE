@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace SGHE.Model {
     internal class DiaTrabalhado {
-        public DiaTrabalhado(int horasExtras, int horasNormais, double horasNoturnas) {
+        public DiaTrabalhado(double horasExtras, double horasNormais, double horasNoturnas) {
             this.HorasExtras = horasExtras;
             this.HorasNormais = horasNormais;
             this.HorasNoturnas = horasNoturnas;
         }
 
-        public int HorasExtras { get; set; }
+        public double HorasExtras { get; set; }
 
-        public int HorasNormais { get; set; }
+        public double HorasNormais { get; set; }
 
         public double HorasNoturnas { get; set; }
     }

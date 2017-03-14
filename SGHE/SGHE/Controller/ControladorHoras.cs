@@ -96,9 +96,9 @@ namespace SGHE.Controller {
             return minutosResultantes;
         }
 
-        public static int CalculaHorasExtras(int minutosTrabalhados, int minutosPrimeroExtra) {
+        public static double CalculaHorasExtras(double minutosTrabalhados, int minutosPrimeroExtra) {
 
-            int minutosExtras = 0;
+            double minutosExtras = 0;
 
             if(minutosTrabalhados <= 480) {
 
@@ -194,7 +194,7 @@ namespace SGHE.Controller {
                 }
             }
             if (!flag) {
-                if (hora4 > 5 && hora3 < 22 && (hora4 - hora3 > 7 || hora4 - hora3 < 0)) {
+                if (hora4 > 5 && hora3 < 22 && (hora4 - hora3 > 7 && hora4 - hora3 < 0)) {
                     flag = true;
                     hora3 = 22;
                     minuto3 = 0;
@@ -243,17 +243,33 @@ namespace SGHE.Controller {
 
         }
 
-        public static double CalculaValorHoraExtra(int horasExtras, double percentHEI, double percentHE, int segundaHE, double salario) {
-            return 1;
+        public static double CalculaValorHoraExtra(double horasExtras, double percentHEI, double percentHE, int segundaHE, double salario) {
+            double salarioN = salario;
+            if (horasExtras > 120) {
+                salarioN += (salario * (percentHEI / 100));
+                salarioN = salarioN * 2;
+                horasExtras -= 120;
+                salarioN += (salario * (percentHE / 100));
+                salarioN = salarioN * (horasExtras/60);
+            }
+            else {
+                salarioN += (salario * (percentHEI / 100));
+                salarioN = salarioN * (horasExtras / 60);
+            }
+            return salarioN;
         }
 
         public static double CalculaValorHoraNoturna(double horaNoturna, double percentHN, double salario) {
-            return 1;
+            double salarioN = salario;
+            salarioN += salario * (percentHN / 100);
+            salarioN = salarioN * (horaNoturna / 60);
+            return salarioN;
         }
 
-        public static double CalculaValorSalario(double salario, double salarioHE, double salarioHN, int horasTrabalhadas) {
-
-            return 1;
+        public static double CalculaValorSalario(double salario, double salarioHE, double salarioHN, double horasTrabalhadas) {
+            double salarioN = salario * (horasTrabalhadas / 60);
+            Console.WriteLine(salarioN+" "+salarioHE+" "+ salarioHN);
+            return salarioN + salarioHE + salarioHN;
         }
     }
 }
