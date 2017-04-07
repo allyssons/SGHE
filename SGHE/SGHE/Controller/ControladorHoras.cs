@@ -64,9 +64,7 @@ namespace SGHE.Controller {
                 Console.WriteLine(minutosResultantes);
 
             }
-
-
-
+            
             if (hora3 == hora4) {
 
                 minutosResultantes += minuto4 - minuto3;
@@ -390,10 +388,12 @@ namespace SGHE.Controller {
             return salarioN;
         }
 
-        public static double CalculaValorHoraNoturna(double horaNoturna, double percentHN, double salario) {
+        public static double CalculaValorHoraNoturna(double horaNoturna, double percentHN, double salario, 
+                                                     double percenteHEN, double horaExtraNoturna) {
             double salarioN = salario;
             salarioN += salario * (percentHN / 100);
             salarioN = salarioN * (horaNoturna / 60);
+            salarioN += (horaExtraNoturna / 60) * (percenteHEN / 100);
             return salarioN;
         }
 
@@ -401,6 +401,61 @@ namespace SGHE.Controller {
             double salarioN = salario * (horasTrabalhadas / 60);
             Console.WriteLine(salarioN+" "+salarioHE+" "+ salarioHN);
             return salarioN + salarioHE + salarioHN;
+        }
+
+
+        public static double CalculaHorasExtrasNoturnas(string text1, string text2, string text3, string text4) {
+            int minutosResultantes1 = CalculaHoras(text1, text2);
+            int minutosResultantes2 = CalculaHoras(text3, text4);
+            string horaA = text1.Split(':')[0];
+            string minutoA = text1.Split(':')[1];
+            int hora1 = int.Parse(horaA);
+            int minuto1;
+            if (minutoA == "") minuto1 = 0;
+            else minuto1 = Int32.Parse(minutoA);
+            double minutosExtrasNoturnos = 0;
+
+            string horaC = text3.Split(':')[0];
+            string minutoC = text3.Split(':')[1];
+            int hora3 = Int32.Parse(horaC);
+            int minuto3;
+            if (minutoC == "") minuto3 = 0;
+            else minuto3 = Int32.Parse(minutoC);
+
+            if (minutosResultantes1 > 360) {
+                hora1 += 6;
+                string a = hora1 + ":" + minuto1;
+                minutosExtrasNoturnos += IdentificaHorasNoturnas(a, text2);
+                minutosExtrasNoturnos = CalculaHorasNoturnas(Convert.ToInt32(minutosExtrasNoturnos));
+            }
+            if (minutosResultantes1 + minutosResultantes2 > 480) {
+                hora3 +=( minutosResultantes1 + minutosResultantes2 - 480) / 60;
+                string a = hora3 + ":" + minuto3;
+                int b = IdentificaHorasNoturnas(a, text4);
+                minutosExtrasNoturnos += CalculaHorasNoturnas(b);
+            }
+
+            return minutosExtrasNoturnos;
+        }
+
+        public static double CalculaHorasExtrasNoturnas(string text1, string text2) {
+            int minutosResultantes1 = CalculaHoras(text1, text2);
+            string horaA = text1.Split(':')[0];
+            string minutoA = text1.Split(':')[1];
+            int hora1 = int.Parse(horaA);
+            int minuto1;
+            if (minutoA == "") minuto1 = 0;
+            else minuto1 = Int32.Parse(minutoA);
+            double minutosExtrasNoturnos = 0;
+
+            if (minutosResultantes1 > 360) {
+                hora1 += 6;
+                string a = hora1 + ":" + minuto1;
+                minutosExtrasNoturnos += IdentificaHorasNoturnas(a, text2);
+                minutosExtrasNoturnos = CalculaHorasNoturnas(Convert.ToInt32(minutosExtrasNoturnos));
+            }
+
+            return minutosExtrasNoturnos;
         }
     }
 }

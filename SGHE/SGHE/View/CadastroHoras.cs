@@ -19,10 +19,14 @@ namespace SGHE.View {
         private readonly double _p1;
         private readonly double _p2;
         private readonly double _pN;
+        private readonly double _pEn;
         private readonly double _salario;
+        private double _horasExtrasNoturnas;
 
 
-        public CadastroHoras(string nomeFuncionario, double salario, double p1, double p2, double pN,  int minutoExtra) {
+        public CadastroHoras(string nomeFuncionario, double salario, 
+                            double p1, double p2, double pN,  int minutoExtra, 
+                            int horasMensais, double pEn) {
             InitializeComponent();
             MinutosTrabalhados = 0;
             labelNome.Text = nomeFuncionario;            
@@ -31,7 +35,9 @@ namespace SGHE.View {
             _p1 = p1;
             _p2 = p2;
             _pN = pN;
-            _salario = salario;
+            _pEn = pEn;
+            _salario = salario/horasMensais;
+            _horasExtrasNoturnas = 0;
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
@@ -46,6 +52,7 @@ namespace SGHE.View {
             if (EntradaTB.Text == "  :" || SaidaTB.Text == "  :") {
                 MessageBox.Show("Digite uma entrada para a hora");
             }else {
+                _horasExtrasNoturnas = 0;
                 var horasTrabalhadasInicial = 0;
                 var horasTrabalhadasNoite = 0;
                 var horasNoturnas = 0.0;
@@ -53,6 +60,9 @@ namespace SGHE.View {
                 var horasTrabalhadasNormais = 0.0;
 
                 if (EntradaIntervalo.Text != "  :") { //HOUVE INTERVALO
+
+                    
+
                     horasTrabalhadasInicial = ControladorHoras.CalculaHoras(EntradaTB.Text, EntradaIntervalo.Text,
                         SaidaIntervalo.Text, SaidaTB.Text);
                     //MessageBox.Show("Horas totais trabalhadas"+horasTrabalhadasInicial);
@@ -65,12 +75,19 @@ namespace SGHE.View {
                     horasNoturnas = ControladorHoras.CalculaHorasNoturnas(horasTrabalhadasNoite);
                    // MessageBox.Show("Horas noturnas após transformação" + horasNoturnas);
 
-                    horasExtras = ControladorHoras.CalculaHorasExtras((horasTrabalhadasInicial - horasTrabalhadasNoite) 
-                                                                      + horasNoturnas, _minutoExtra, 
+                    horasExtras = ControladorHoras.CalculaHorasExtras(horasTrabalhadasInicial, _minutoExtra, 
                                                                       EntradaTB.Text, EntradaIntervalo.Text,
                                                                       SaidaIntervalo.Text, SaidaTB.Text);
+                     MessageBox.Show("Horas extras trabalhas"+horasExtras);
 
-                   // MessageBox.Show("Horas extras trabalhas"+horasExtras);
+                    if (horasExtras > 0)
+                        _horasExtrasNoturnas = ControladorHoras.CalculaHorasExtrasNoturnas(EntradaTB.Text,
+                                                                                           EntradaIntervalo.Text,
+                                                                                           SaidaIntervalo.Text, SaidaTB.Text);
+                    if (_horasExtrasNoturnas != 0) {
+                        horasExtras += _horasExtrasNoturnas - horasExtras;
+                    }
+                    MessageBox.Show("Horas extras noturnas" + _horasExtrasNoturnas);
 
                     horasTrabalhadasNormais = (horasTrabalhadasInicial - horasTrabalhadasNoite) - horasExtras;
                 }
@@ -84,16 +101,23 @@ namespace SGHE.View {
                     horasNoturnas = ControladorHoras.CalculaHorasNoturnas(horasTrabalhadasNoite);
                     //MessageBox.Show("Horas noturnas após transformação" + horasNoturnas);
 
-                    horasExtras = ControladorHoras.CalculaHorasExtras((horasTrabalhadasInicial - horasTrabalhadasNoite) 
-                                                                        + horasNoturnas, _minutoExtra);
+                    horasExtras = ControladorHoras.CalculaHorasExtras(horasTrabalhadasInicial , _minutoExtra);
 
                     //MessageBox.Show("Horas extras trabalhas"+horasExtras);
-                
+
+                    if (horasExtras > 0)
+                        _horasExtrasNoturnas = ControladorHoras.CalculaHorasExtrasNoturnas(EntradaTB.Text,
+                                                                                           SaidaTB.Text);
+                    if (_horasExtrasNoturnas != 0) {
+                        horasExtras += _horasExtrasNoturnas - horasExtras;
+                    }
+                    MessageBox.Show("Horas extras noturnas" + _horasExtrasNoturnas);
+
                     horasTrabalhadasNormais = (horasTrabalhadasInicial - horasTrabalhadasNoite) - horasExtras;
                 }
                 
 
-                _diasRegistrados.Add(new DiaTrabalhado(horasExtras, horasTrabalhadasNormais, horasNoturnas));
+                _diasRegistrados.Add(new DiaTrabalhado(horasExtras, horasTrabalhadasNormais, horasNoturnas, _horasExtrasNoturnas));
 
                 int day = monthCalendar1.SelectionRange.Start.Day;
                 int month = monthCalendar1.SelectionRange.Start.Month;
@@ -193,7 +217,7 @@ namespace SGHE.View {
                 valorSalarioExtra += valorHoraExtra;
 
                 var valorHoraNoturna = ControladorHoras.CalculaValorHoraNoturna(t.HorasNoturnas, 
-                    _pN, _salario);
+                    _pN, _salario, _pEn, t.HorasExtrasNoturnas);
 
                 valorSalarioNoturno += valorHoraNoturna;
 

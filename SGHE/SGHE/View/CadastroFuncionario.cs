@@ -80,8 +80,15 @@ namespace SGHE.View {
                 minuto1 += hora1 * 60;
                 CadastroHoras a = new CadastroHoras(funcionarioTB.Text, Convert.ToDouble(salarioTB.Text),
                                                     Convert.ToDouble(textBox2.Text), Convert.ToDouble(textBox3.Text),
-                                                    Convert.ToDouble(textBox4.Text), minuto1);
+                                                    Convert.ToDouble(textBox4.Text), minuto1, Convert.ToInt32(textBox1.Text),
+                                                    Convert.ToDouble(textBox5.Text));
                 _panel1.Controls.Add(a);
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e) {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8) {
+                e.Handled = true;
             }
         }
     }
