@@ -96,17 +96,92 @@ namespace SGHE.Controller {
             return minutosResultantes;
         }
 
+        public static int CalculaHoras(string text1, string text2) {
+            string horaA = text1.Split(':')[0];
+            string minutoA = text1.Split(':')[1];
+            int hora1 = Int32.Parse(horaA);
+            int minuto1;
+            if (minutoA == "") minuto1 = 0;
+            else minuto1 = Int32.Parse(minutoA);
+
+            string horaB = text2.Split(':')[0];
+            string minutoB = text2.Split(':')[1];
+            int hora2 = Int32.Parse(horaB);
+            int minuto2;
+            if (minutoB == "") minuto2 = 0;
+            else minuto2 = Int32.Parse(minutoB);
+
+           
+
+            int minutosResultantes = 0;
+
+            //Calcula o valor dos minutos resultantes
+
+            if (hora1 == hora2) {
+
+                minutosResultantes += minuto2 - minuto1;
+
+            } else if (hora1 > hora2) {
+
+                if (minuto1 == 0) minuto1 = 60;
+                else hora1++;
+
+                minutosResultantes += (60 - minuto1) + minuto2;
+
+                minutosResultantes += (24 - hora1 + hora2) * 60;
+
+            } else {
+
+                if (minuto1 == 0) minuto1 = 60;
+                else hora1++;
+
+                minutosResultantes += (60 - minuto1) + minuto2;
+
+                minutosResultantes += (hora2 - (hora1)) * 60;
+                Console.WriteLine(minutosResultantes);
+
+            }
+
+            return minutosResultantes;
+        }
+
         public static double CalculaHorasExtras(double minutosTrabalhados, int minutosPrimeroExtra) {
 
             double minutosExtras = 0;
 
-            if(minutosTrabalhados <= 480) {
+            if(minutosTrabalhados <= 360) {
 
                 return 0;
 
             }else {
 
-                minutosExtras = minutosTrabalhados - 480;
+                minutosExtras = minutosTrabalhados - 360;
+            }
+
+            return minutosExtras;
+        }
+
+        public static double CalculaHorasExtras(double minutosTrabalhados, int minutosPrimeroExtra, 
+                                                string text1, string text2, string text3, string text4) {
+
+
+            int minutosAntesPausa = CalculaHoras(text1, text2);
+
+            int minutosDepoisPausa = CalculaHoras(text3, text4);
+
+            double minutosExtras = 0;
+
+            if (minutosAntesPausa > 360) minutosExtras += minutosAntesPausa - 360;
+
+            if (minutosDepoisPausa > 360) minutosExtras += minutosDepoisPausa - 360;
+
+            if (minutosTrabalhados <= 480) {
+
+                return minutosExtras;
+
+            } else {
+
+                minutosExtras += minutosTrabalhados - 480;
             }
 
             return minutosExtras;
@@ -160,7 +235,7 @@ namespace SGHE.Controller {
                 }
             }
             if (!flag) {
-                if (hora2 > 5 && hora1 < 22 && (hora2 - hora1 > 7 || hora2 - hora1 < 0)) {
+                if (hora2 > 5 && hora1 < 22 &&  hora2 - hora1 < 0) {
                     flag = true;
                     hora1 = 22;
                     minuto1 = 0;
@@ -194,7 +269,7 @@ namespace SGHE.Controller {
                 }
             }
             if (!flag) {
-                if (hora4 > 5 && hora3 < 22 && (hora4 - hora3 > 7 && hora4 - hora3 < 0)) {
+                if (hora4 > 5 && hora3 < 22 &&  hora4 - hora3 < 0) {
                     flag = true;
                     hora3 = 22;
                     minuto3 = 0;
@@ -219,6 +294,62 @@ namespace SGHE.Controller {
             Console.WriteLine("HORA3:" + c);
             Console.WriteLine("HORA4:" + d);
             minutosResultantes = CalculaHoras(a, b, c, d);
+
+            return minutosResultantes;
+        }
+
+        public static int IdentificaHorasNoturnas(string text1, string text2) {
+            string horaA = text1.Split(':')[0];
+            string minutoA = text1.Split(':')[1];
+            int hora1 = int.Parse(horaA);
+            int minuto1;
+            if (minutoA == "") minuto1 = 0;
+            else minuto1 = Int32.Parse(minutoA);
+
+            string horaB = text2.Split(':')[0];
+            string minutoB = text2.Split(':')[1];
+            int hora2 = Int32.Parse(horaB);
+            int minuto2;
+            if (minutoB == "") minuto2 = 0;
+            else minuto2 = Int32.Parse(minutoB);
+            
+            int minutosResultantes = 0;
+
+            bool flag = false;
+
+            if (hora1 >= 22 || hora1 < 5) {
+                flag = true;
+                if (hora2 >= 5 && hora2 < 22) {
+                    hora2 = 5;
+                    minuto2 = 0;
+                }
+            }
+            if (hora2 >= 22 || hora2 < 5) {
+                flag = true;
+                if (hora1 >= 5 && hora1 < 22) {
+                    hora1 = 22;
+                    minuto1 = 0;
+                }
+            }
+            if (!flag) {
+                if (hora2 >= 5 && hora1 < 22 && hora2 - hora1 < 0) {
+                    flag = true;
+                    hora1 = 22;
+                    minuto1 = 0;
+                    hora2 = 5;
+                    minuto2 = 0;
+                }
+            }
+
+            if (!flag) {
+                hora1 = 0;
+                minuto1 = 0;
+                hora2 = 0;
+                minuto2 = 0;
+            }
+            string a = hora1 + ":" + minuto1;
+            string b = hora2 + ":" + minuto2;
+            minutosResultantes = CalculaHoras(a, b);
 
             return minutosResultantes;
         }

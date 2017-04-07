@@ -43,25 +43,55 @@ namespace SGHE.View {
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            if (maskedTextBox1.Text == "  :" || maskedTextBox2.Text == "  :" ||
-                maskedTextBox3.Text == "  :" || maskedTextBox4.Text == "  :") {
+            if (EntradaTB.Text == "  :" || SaidaTB.Text == "  :") {
                 MessageBox.Show("Digite uma entrada para a hora");
             }else {
-                var horasTrabalhadasInicial = ControladorHoras.CalculaHoras(maskedTextBox1.Text, maskedTextBox2.Text, 
-                    maskedTextBox3.Text, maskedTextBox4.Text);
-                //MessageBox.Show("Horas totais trabalhadas"+horasTrabalhadasInicial);
+                var horasTrabalhadasInicial = 0;
+                var horasTrabalhadasNoite = 0;
+                var horasNoturnas = 0.0;
+                var horasExtras = 0.0;
+                var horasTrabalhadasNormais = 0.0;
 
-                var horasTrabalhadasNoite = ControladorHoras.IdentificaHorasNoturnas(maskedTextBox1.Text, maskedTextBox2.Text,
-                    maskedTextBox3.Text, maskedTextBox4.Text);
-                //MessageBox.Show("Horas noturnas trabalhadas"+horasTrabalhadasNoite);
+                if (EntradaIntervalo.Text != "  :") { //HOUVE INTERVALO
+                    horasTrabalhadasInicial = ControladorHoras.CalculaHoras(EntradaTB.Text, EntradaIntervalo.Text,
+                        SaidaIntervalo.Text, SaidaTB.Text);
+                    //MessageBox.Show("Horas totais trabalhadas"+horasTrabalhadasInicial);
 
-                var horasNoturnas = ControladorHoras.CalculaHorasNoturnas(horasTrabalhadasNoite);
-                //MessageBox.Show("Horas noturnas após transformação" + horasNoturnas);
+                    horasTrabalhadasNoite = ControladorHoras.IdentificaHorasNoturnas(EntradaTB.Text,
+                        EntradaIntervalo.Text,
+                        SaidaIntervalo.Text, SaidaTB.Text);
+                   // MessageBox.Show("Horas noturnas trabalhadas"+horasTrabalhadasNoite);
+
+                    horasNoturnas = ControladorHoras.CalculaHorasNoturnas(horasTrabalhadasNoite);
+                   // MessageBox.Show("Horas noturnas após transformação" + horasNoturnas);
+
+                    horasExtras = ControladorHoras.CalculaHorasExtras((horasTrabalhadasInicial - horasTrabalhadasNoite) 
+                                                                      + horasNoturnas, _minutoExtra, 
+                                                                      EntradaTB.Text, EntradaIntervalo.Text,
+                                                                      SaidaIntervalo.Text, SaidaTB.Text);
+
+                   // MessageBox.Show("Horas extras trabalhas"+horasExtras);
+
+                    horasTrabalhadasNormais = (horasTrabalhadasInicial - horasTrabalhadasNoite) - horasExtras;
+                }
+                else { //NAO HOUVE INTERVALO
+                    horasTrabalhadasInicial = ControladorHoras.CalculaHoras(EntradaTB.Text, SaidaTB.Text); 
+                   // MessageBox.Show("Horas totais trabalhadas"+horasTrabalhadasInicial);
+
+                   horasTrabalhadasNoite = ControladorHoras.IdentificaHorasNoturnas(EntradaTB.Text, SaidaTB.Text);
+                    //MessageBox.Show("Horas noturnas trabalhadas"+horasTrabalhadasNoite);
+
+                    horasNoturnas = ControladorHoras.CalculaHorasNoturnas(horasTrabalhadasNoite);
+                    //MessageBox.Show("Horas noturnas após transformação" + horasNoturnas);
+
+                    horasExtras = ControladorHoras.CalculaHorasExtras((horasTrabalhadasInicial - horasTrabalhadasNoite) 
+                                                                        + horasNoturnas, _minutoExtra);
+
+                    //MessageBox.Show("Horas extras trabalhas"+horasExtras);
                 
-                var horasExtras = ControladorHoras.CalculaHorasExtras((horasTrabalhadasInicial-horasTrabalhadasNoite)+horasNoturnas, _minutoExtra);
-                //MessageBox.Show("Horas extras trabalhas"+horasExtras);
-
-                var horasTrabalhadasNormais = (horasTrabalhadasInicial - horasTrabalhadasNoite) - horasExtras;
+                    horasTrabalhadasNormais = (horasTrabalhadasInicial - horasTrabalhadasNoite) - horasExtras;
+                }
+                
 
                 _diasRegistrados.Add(new DiaTrabalhado(horasExtras, horasTrabalhadasNormais, horasNoturnas));
 
