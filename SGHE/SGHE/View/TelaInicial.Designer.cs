@@ -24,16 +24,15 @@
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SGHE));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.manipularFeriadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.manipularFeriadosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.manipularFeriadosToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.realizarCadastroHoraExtraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cadastrarNovoFuncionárioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -49,83 +48,82 @@
             this.manipularFeriadosToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.manipularFeriadosToolStripMenuItem.Text = "Manipular Feriados";
             // 
-            // menuStrip1
+            // button2
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.realizarCadastroHoraExtraToolStripMenuItem,
-            this.manipularFeriadosToolStripMenuItem1});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(666, 24);
-            this.menuStrip1.TabIndex = 12;
-            this.menuStrip1.Text = "menuStrip1";
+            this.button2.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.button2.Font = new System.Drawing.Font("Modern No. 20", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(762, 176);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(140, 48);
+            this.button2.TabIndex = 16;
+            this.button2.Text = "Manipular Feriados";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // manipularFeriadosToolStripMenuItem1
+            // label1
             // 
-            this.manipularFeriadosToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.manipularFeriadosToolStripMenuItem2});
-            this.manipularFeriadosToolStripMenuItem1.Name = "manipularFeriadosToolStripMenuItem1";
-            this.manipularFeriadosToolStripMenuItem1.Size = new System.Drawing.Size(63, 20);
-            this.manipularFeriadosToolStripMenuItem1.Text = "Feriados";
-            // 
-            // manipularFeriadosToolStripMenuItem2
-            // 
-            this.manipularFeriadosToolStripMenuItem2.Name = "manipularFeriadosToolStripMenuItem2";
-            this.manipularFeriadosToolStripMenuItem2.Size = new System.Drawing.Size(175, 22);
-            this.manipularFeriadosToolStripMenuItem2.Text = "Manipular Feriados";
-            this.manipularFeriadosToolStripMenuItem2.Click += new System.EventHandler(this.manipularFeriadosToolStripMenuItem2_Click);
-            // 
-            // realizarCadastroHoraExtraToolStripMenuItem
-            // 
-            this.realizarCadastroHoraExtraToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cadastrarNovoFuncionárioToolStripMenuItem});
-            this.realizarCadastroHoraExtraToolStripMenuItem.Name = "realizarCadastroHoraExtraToolStripMenuItem";
-            this.realizarCadastroHoraExtraToolStripMenuItem.Size = new System.Drawing.Size(166, 20);
-            this.realizarCadastroHoraExtraToolStripMenuItem.Text = "Realizar Cadastro Hora extra";
-            // 
-            // cadastrarNovoFuncionárioToolStripMenuItem
-            // 
-            this.cadastrarNovoFuncionárioToolStripMenuItem.Name = "cadastrarNovoFuncionárioToolStripMenuItem";
-            this.cadastrarNovoFuncionárioToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.cadastrarNovoFuncionárioToolStripMenuItem.Text = "Cadastrar novo funcionário";
-            this.cadastrarNovoFuncionárioToolStripMenuItem.Click += new System.EventHandler(this.cadastrarNovoFuncionárioToolStripMenuItem_Click);
+            this.label1.Image = global::SGHE.Properties.Resources.logo;
+            this.label1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label1.Location = new System.Drawing.Point(759, 290);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(155, 168);
+            this.label1.TabIndex = 14;
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(3, 25);
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel1.BackgroundImage = global::SGHE.Properties.Resources.clock_time_blue_background_wallpaper_768x480;
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Location = new System.Drawing.Point(2, -1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(663, 414);
+            this.panel1.Size = new System.Drawing.Size(751, 486);
             this.panel1.TabIndex = 13;
             this.panel1.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.panel1_ControlRemoved);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.DarkRed;
+            this.button1.Font = new System.Drawing.Font("Modern No. 20", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.Location = new System.Drawing.Point(595, 411);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(140, 48);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Calcular horas";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // SGHE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(666, 440);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ClientSize = new System.Drawing.Size(914, 480);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "SGHE";
-            this.Text = "SGHE";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Conta Horas";
+            this.Load += new System.EventHandler(this.SGHE_Load);
             this.contextMenuStrip1.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem manipularFeriadosToolStripMenuItem;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem manipularFeriadosToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem manipularFeriadosToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem realizarCadastroHoraExtraToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ToolStripMenuItem cadastrarNovoFuncionárioToolStripMenuItem;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

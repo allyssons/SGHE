@@ -36,6 +36,22 @@ namespace SGHE {
         private void panel1_ControlRemoved(object sender, ControlEventArgs e) {
 
         }
+
+        private void SGHE_Load(object sender, EventArgs e) {
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            panel1.Controls.Clear();
+            CadastroFuncionario a = new CadastroFuncionario(panel1);
+            panel1.Controls.Add(a);
+        }
+
+        private void button2_Click(object sender, EventArgs e) {
+            ManipularFeriados a = new ManipularFeriados();
+            a.Show();
+        }
     }
 
 }
