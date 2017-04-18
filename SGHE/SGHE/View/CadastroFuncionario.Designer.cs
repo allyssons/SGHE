@@ -35,16 +35,17 @@
             this.label15 = new System.Windows.Forms.Label();
             this.salarioTB = new System.Windows.Forms.TextBox();
             this.horaTB = new System.Windows.Forms.MaskedTextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.horasMensais = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.heTB = new System.Windows.Forms.TextBox();
+            this.primeiraHETB = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.henTB = new System.Windows.Forms.TextBox();
+            this.hnTB = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // funcionarioTB
@@ -169,6 +170,7 @@
             this.salarioTB.Name = "salarioTB";
             this.salarioTB.Size = new System.Drawing.Size(78, 20);
             this.salarioTB.TabIndex = 56;
+            this.salarioTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.salarioTB_KeyPress_1);
             // 
             // horaTB
             // 
@@ -180,13 +182,14 @@
             this.horaTB.Text = "0200";
             this.horaTB.ValidatingType = typeof(System.DateTime);
             // 
-            // textBox1
+            // horasMensais
             // 
-            this.textBox1.Location = new System.Drawing.Point(188, 205);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(24, 20);
-            this.textBox1.TabIndex = 58;
-            this.textBox1.Text = "220";
+            this.horasMensais.Location = new System.Drawing.Point(188, 205);
+            this.horasMensais.Name = "horasMensais";
+            this.horasMensais.Size = new System.Drawing.Size(24, 20);
+            this.horasMensais.TabIndex = 58;
+            this.horasMensais.Text = "220";
+            this.horasMensais.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress_1);
             // 
             // label12
             // 
@@ -224,49 +227,37 @@
             this.label7.TabIndex = 64;
             this.label7.Text = "%";
             // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(420, 382);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(24, 20);
-            this.textBox5.TabIndex = 63;
-            this.textBox5.Text = "20";
-            // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Modern No. 20", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label6.Location = new System.Drawing.Point(444, 268);
+            this.label6.Location = new System.Drawing.Point(0, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(13, 15);
-            this.label6.TabIndex = 62;
-            this.label6.Text = "%";
+            this.label6.Size = new System.Drawing.Size(100, 23);
+            this.label6.TabIndex = 69;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(420, 343);
+            this.textBox4.Location = new System.Drawing.Point(0, 0);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(24, 20);
-            this.textBox4.TabIndex = 61;
-            this.textBox4.Text = "20";
+            this.textBox4.Size = new System.Drawing.Size(100, 20);
+            this.textBox4.TabIndex = 70;
             // 
-            // textBox3
+            // heTB
             // 
-            this.textBox3.Location = new System.Drawing.Point(420, 301);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(24, 20);
-            this.textBox3.TabIndex = 60;
-            this.textBox3.Text = "100";
+            this.heTB.Location = new System.Drawing.Point(420, 301);
+            this.heTB.Name = "heTB";
+            this.heTB.Size = new System.Drawing.Size(24, 20);
+            this.heTB.TabIndex = 60;
+            this.heTB.Text = "100";
+            this.heTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
-            // textBox2
+            // primeiraHETB
             // 
-            this.textBox2.Location = new System.Drawing.Point(420, 266);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(24, 20);
-            this.textBox2.TabIndex = 59;
-            this.textBox2.Text = "50";
+            this.primeiraHETB.Location = new System.Drawing.Point(420, 266);
+            this.primeiraHETB.Name = "primeiraHETB";
+            this.primeiraHETB.Size = new System.Drawing.Size(24, 20);
+            this.primeiraHETB.TabIndex = 59;
+            this.primeiraHETB.Text = "50";
+            this.primeiraHETB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
             // button1
             // 
@@ -278,22 +269,42 @@
             this.button1.TabIndex = 67;
             this.button1.Text = "Calcular horas";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // henTB
+            // 
+            this.henTB.Location = new System.Drawing.Point(420, 379);
+            this.henTB.Name = "henTB";
+            this.henTB.Size = new System.Drawing.Size(24, 20);
+            this.henTB.TabIndex = 72;
+            this.henTB.Text = "20";
+            this.henTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
+            // 
+            // hnTB
+            // 
+            this.hnTB.Location = new System.Drawing.Point(420, 344);
+            this.hnTB.Name = "hnTB";
+            this.hnTB.Size = new System.Drawing.Size(24, 20);
+            this.hnTB.TabIndex = 71;
+            this.hnTB.Text = "20";
+            this.hnTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox7_KeyPress);
             // 
             // CadastroFuncionario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::SGHE.Properties.Resources.clock_time_blue_background_wallpaper_768x480;
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.Controls.Add(this.henTB);
+            this.Controls.Add(this.hnTB);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.heTB);
+            this.Controls.Add(this.primeiraHETB);
+            this.Controls.Add(this.horasMensais);
             this.Controls.Add(this.horaTB);
             this.Controls.Add(this.salarioTB);
             this.Controls.Add(this.label15);
@@ -328,15 +339,16 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox salarioTB;
         private System.Windows.Forms.MaskedTextBox horaTB;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox horasMensais;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox heTB;
+        private System.Windows.Forms.TextBox primeiraHETB;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox henTB;
+        private System.Windows.Forms.TextBox hnTB;
     }
 }

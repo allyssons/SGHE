@@ -111,11 +111,21 @@ namespace SGHE.View {
         private void button3_Click(object sender, EventArgs e) {
             if (ControladorFeriados.SalvaFeriados(c)) {
                 MessageBox.Show("Lista de feriados salva com sucesso!");
+                flagAlteracao = 0;
             }
         }
 
-        private void ManipularFeriados_FormClosing(object sender, FormClosingEventArgs e) {
-            if(flagAlteracao == 1) {
+
+        private void comboBox1_KeyPress(object sender, KeyPressEventArgs e) {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+
+        private void feriadoTB_TextChanged(object sender, EventArgs e) {
+
+        }
+
+        private void ManipularFeriados_FormClosing_1(object sender, FormClosingEventArgs e) {
+            if (flagAlteracao == 1) {
                 DialogResult dlg = MessageBox.Show("Deseja salvar as alterações?", "Question", MessageBoxButtons.YesNo);
                 if (dlg == DialogResult.Yes) {
                     if (ControladorFeriados.SalvaFeriados(c)) {
@@ -127,14 +137,6 @@ namespace SGHE.View {
                     }
                 }
             }
-        }
-
-        private void comboBox1_KeyPress(object sender, KeyPressEventArgs e) {
-            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
-        }
-
-        private void feriadoTB_TextChanged(object sender, EventArgs e) {
-
         }
     }
 }

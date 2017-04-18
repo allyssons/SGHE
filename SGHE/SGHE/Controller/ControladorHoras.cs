@@ -116,6 +116,8 @@ namespace SGHE.Controller {
             //Calcula o valor dos minutos resultantes
 
             if (hora1 == hora2) {
+                Console.WriteLine("minuto2"+minuto2);
+                Console.WriteLine("minuto1" + minuto1);
 
                 minutosResultantes += minuto2 - minuto1;
 
@@ -359,7 +361,7 @@ namespace SGHE.Controller {
 
             a = a - horas;
 
-            int minutos = (int) (a / 0.016667);
+            int minutos = (int)Math.Ceiling(a / 0.016667);
 
             a = a / 0.016667;
 
