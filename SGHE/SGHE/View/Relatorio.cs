@@ -17,8 +17,8 @@ namespace SGHE.View {
     public partial class Relatorio : UserControl {
 
 
-        public Relatorio(string nome, int saldoAnterior, double horasdias, int diasUteis, double horasTotais, double horasExtras, double horasNoturnas,
-                         double salario, double salarioExtra, double salarioNoturno) {
+        public Relatorio(string nome, int saldoAnterior, double horasMensais, int diasUteis, double horasTotais, double horasExtras, double horasNoturnas,
+                         double salario, double salarioExtra, double salarioNoturno, DateTime iniPeriod, DateTime endPeriod) {
             InitializeComponent();
             var hora = 0;
             var minuto = 0;
@@ -30,6 +30,13 @@ namespace SGHE.View {
             hora = converteHora(saldoAnterior);
             minuto = converteMinuto(saldoAnterior);
             saldoAnteriorLabel.Text = hora.ToString("00") +":"+minuto.ToString("00");
+
+            //Seta saldo atual
+            double horasDeviamTrabalhadas = ((horasMensais*60)/30) * diasUteis;            
+            double saldoAtual = horasTotais - horasDeviamTrabalhadas + saldoAnterior;
+            hora = converteHora(saldoAtual);
+            minuto = converteMinuto(saldoAtual);
+            saldoAtualLabel.Text = hora.ToString("00") + ":" + minuto.ToString("00");
 
             //Seta horas totais
             hora = converteHora(horasTotais);
@@ -55,6 +62,11 @@ namespace SGHE.View {
 
             //Seta salario noturno
             valorNoturnoLabel.Text = "R$ " + salarioNoturno.ToString("0.00");
+
+            //Seta Periodo
+            string dataInicial = iniPeriod.Day.ToString() + "/" + iniPeriod.Month.ToString() + "/" + iniPeriod.Year.ToString();
+            string dataFinal = endPeriod.Day.ToString() + "/" + endPeriod.Month.ToString() + "/" + endPeriod.Year.ToString();
+            periodoLabel.Text = dataInicial + " a " + dataFinal;
         }
 
         public int converteHora(double horasA) {
@@ -68,7 +80,6 @@ namespace SGHE.View {
             double a = (horasA / 60);
 
             a = a - horas;
-
 
             return (int)Math.Ceiling(a / 0.016667);
         }
