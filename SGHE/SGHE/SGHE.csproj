@@ -63,11 +63,11 @@
     <Compile Include="View\ManipularFeriados.Designer.cs">
       <DependentUpon>ManipularFeriados.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\RelatorioFinal,cs.cs">
-      <SubType>Form</SubType>
+    <Compile Include="View\Relatorio.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\RelatorioFinal,cs.Designer.cs">
-      <DependentUpon>RelatorioFinal,cs.cs</DependentUpon>
+    <Compile Include="View\Relatorio.Designer.cs">
+      <DependentUpon>Relatorio.cs</DependentUpon>
     </Compile>
     <Compile Include="View\TelaInicial.cs">
       <SubType>Form</SubType>
@@ -89,8 +89,8 @@
     <EmbeddedResource Include="View\ManipularFeriados.resx">
       <DependentUpon>ManipularFeriados.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\RelatorioFinal,cs.resx">
-      <DependentUpon>RelatorioFinal,cs.cs</DependentUpon>
+    <EmbeddedResource Include="View\Relatorio.resx">
+      <DependentUpon>Relatorio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\TelaInicial.resx">
       <DependentUpon>TelaInicial.cs</DependentUpon>

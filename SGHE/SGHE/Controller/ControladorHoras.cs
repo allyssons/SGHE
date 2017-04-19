@@ -8,33 +8,17 @@ namespace SGHE.Controller {
     internal static class ControladorHoras {
 
         public static int CalculaHoras(string text1, string text2, string text3, string text4) {
-            string horaA = text1.Split(':')[0];
-            string minutoA = text1.Split(':')[1];
-            int hora1 = Int32.Parse(horaA);
-            int minuto1;
-            if (minutoA == "") minuto1 = 0;
-            else minuto1 = Int32.Parse(minutoA);
+            int hora1 = ConverteTextHora(text1);
+            int minuto1 = ConverteTextMinuto(text1);
 
-            string horaB = text2.Split(':')[0];
-            string minutoB = text2.Split(':')[1];
-            int hora2 = Int32.Parse(horaB);
-            int minuto2;
-            if (minutoB == "") minuto2 = 0;
-            else minuto2 = Int32.Parse(minutoB);
+            int hora2 = ConverteTextHora(text2);
+            int minuto2 = ConverteTextMinuto(text2);
 
-            string horaC = text3.Split(':')[0];
-            string minutoC = text3.Split(':')[1];
-            int hora3 = Int32.Parse(horaC);
-            int minuto3;
-            if (minutoC == "") minuto3 = 0;
-            else minuto3 = Int32.Parse(minutoC);
+            int hora3 = ConverteTextHora(text3);
+            int minuto3 = ConverteTextMinuto(text3);
 
-            string horaD = text4.Split(':')[0];
-            string minutoD = text4.Split(':')[1];
-            int hora4 = Int32.Parse(horaD);
-            int minuto4;
-            if (minutoD == "") minuto4 = 0;
-            else minuto4 = Int32.Parse(minutoD);
+            int hora4 = ConverteTextHora(text4);
+            int minuto4 = ConverteTextMinuto(text4);
 
             int minutosResultantes = 0;
 
@@ -95,21 +79,11 @@ namespace SGHE.Controller {
         }
 
         public static int CalculaHoras(string text1, string text2) {
-            string horaA = text1.Split(':')[0];
-            string minutoA = text1.Split(':')[1];
-            int hora1 = Int32.Parse(horaA);
-            int minuto1;
-            if (minutoA == "") minuto1 = 0;
-            else minuto1 = Int32.Parse(minutoA);
+            int hora1 = ConverteTextHora(text1);
+            int minuto1 = ConverteTextMinuto(text1);
 
-            string horaB = text2.Split(':')[0];
-            string minutoB = text2.Split(':')[1];
-            int hora2 = Int32.Parse(horaB);
-            int minuto2;
-            if (minutoB == "") minuto2 = 0;
-            else minuto2 = Int32.Parse(minutoB);
-
-           
+            int hora2 = ConverteTextHora(text2);
+            int minuto2 = ConverteTextMinuto(text2);
 
             int minutosResultantes = 0;
 
@@ -163,8 +137,6 @@ namespace SGHE.Controller {
 
         public static double CalculaHorasExtras(double minutosTrabalhados, int minutosPrimeroExtra, 
                                                 string text1, string text2, string text3, string text4) {
-
-
             int minutosAntesPausa = CalculaHoras(text1, text2);
 
             int minutosDepoisPausa = CalculaHoras(text3, text4);
@@ -188,33 +160,17 @@ namespace SGHE.Controller {
         }
 
         public static int IdentificaHorasNoturnas (string text1, string text2, string text3, string text4) {
-            string horaA = text1.Split(':')[0];
-            string minutoA = text1.Split(':')[1];
-            int hora1 = int.Parse(horaA);
-            int minuto1;
-            if (minutoA == "") minuto1 = 0;
-            else minuto1 = Int32.Parse(minutoA);
+            int hora1 = ConverteTextHora(text1);
+            int minuto1 = ConverteTextMinuto(text1);
 
-            string horaB = text2.Split(':')[0];
-            string minutoB = text2.Split(':')[1];
-            int hora2 = Int32.Parse(horaB);
-            int minuto2;
-            if (minutoB == "") minuto2 = 0;
-            else minuto2 = Int32.Parse(minutoB);
+            int hora2 = ConverteTextHora(text2);
+            int minuto2 = ConverteTextMinuto(text2);
 
-            string horaC = text3.Split(':')[0];
-            string minutoC = text3.Split(':')[1];
-            int hora3 = Int32.Parse(horaC);
-            int minuto3;
-            if (minutoC == "") minuto3 = 0;
-            else minuto3 = Int32.Parse(minutoC);
+            int hora3 = ConverteTextHora(text3);
+            int minuto3 = ConverteTextMinuto(text3);
 
-            string horaD = text4.Split(':')[0];
-            string minutoD = text4.Split(':')[1];
-            int hora4 = Int32.Parse(horaD);
-            int minuto4;
-            if (minutoD == "") minuto4 = 0;
-            else minuto4 = Int32.Parse(minutoD);
+            int hora4 = ConverteTextHora(text4);
+            int minuto4 = ConverteTextMinuto(text4);
 
             int minutosResultantes = 0;
 
@@ -299,20 +255,12 @@ namespace SGHE.Controller {
         }
 
         public static int IdentificaHorasNoturnas(string text1, string text2) {
-            string horaA = text1.Split(':')[0];
-            string minutoA = text1.Split(':')[1];
-            int hora1 = int.Parse(horaA);
-            int minuto1;
-            if (minutoA == "") minuto1 = 0;
-            else minuto1 = Int32.Parse(minutoA);
+            int hora1 = ConverteTextHora(text1);
+            int minuto1 = ConverteTextMinuto(text1);
 
-            string horaB = text2.Split(':')[0];
-            string minutoB = text2.Split(':')[1];
-            int hora2 = Int32.Parse(horaB);
-            int minuto2;
-            if (minutoB == "") minuto2 = 0;
-            else minuto2 = Int32.Parse(minutoB);
-            
+            int hora2 = ConverteTextHora(text2);
+            int minuto2 = ConverteTextMinuto(text2);
+
             int minutosResultantes = 0;
 
             bool flag = false;
@@ -409,20 +357,13 @@ namespace SGHE.Controller {
         public static double CalculaHorasExtrasNoturnas(string text1, string text2, string text3, string text4) {
             int minutosResultantes1 = CalculaHoras(text1, text2);
             int minutosResultantes2 = CalculaHoras(text3, text4);
-            string horaA = text1.Split(':')[0];
-            string minutoA = text1.Split(':')[1];
-            int hora1 = int.Parse(horaA);
-            int minuto1;
-            if (minutoA == "") minuto1 = 0;
-            else minuto1 = Int32.Parse(minutoA);
             double minutosExtrasNoturnos = 0;
 
-            string horaC = text3.Split(':')[0];
-            string minutoC = text3.Split(':')[1];
-            int hora3 = Int32.Parse(horaC);
-            int minuto3;
-            if (minutoC == "") minuto3 = 0;
-            else minuto3 = Int32.Parse(minutoC);
+            int hora1 = ConverteTextHora(text1);
+            int minuto1 = ConverteTextMinuto(text1);
+
+            int hora3 = ConverteTextHora(text3);
+            int minuto3 = ConverteTextMinuto(text3);
 
             if (minutosResultantes1 > 360) {
                 hora1 += 6;
@@ -442,12 +383,10 @@ namespace SGHE.Controller {
 
         public static double CalculaHorasExtrasNoturnas(string text1, string text2) {
             int minutosResultantes1 = CalculaHoras(text1, text2);
-            string horaA = text1.Split(':')[0];
-            string minutoA = text1.Split(':')[1];
-            int hora1 = int.Parse(horaA);
-            int minuto1;
-            if (minutoA == "") minuto1 = 0;
-            else minuto1 = Int32.Parse(minutoA);
+
+            int hora1 = ConverteTextHora(text1);
+            int minuto1 = ConverteTextMinuto(text1);
+
             double minutosExtrasNoturnos = 0;
 
             if (minutosResultantes1 > 360) {
@@ -458,6 +397,20 @@ namespace SGHE.Controller {
             }
 
             return minutosExtrasNoturnos;
+        }
+
+        public static int ConverteTextHora(string text) {
+            string horaA = text.Split(':')[0];
+            return Int32.Parse(horaA);
+            
+        }
+
+        public static int ConverteTextMinuto(string text) {
+            string minutoA = text.Split(':')[1];
+            int minuto1;
+            if (minutoA == "") minuto1 = 0;
+            else minuto1 = Int32.Parse(minutoA);
+            return minuto1;
         }
     }
 }

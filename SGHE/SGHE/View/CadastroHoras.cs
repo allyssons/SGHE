@@ -14,6 +14,9 @@ using SGHE.Model;
 namespace SGHE.View {
     public partial class CadastroHoras : UserControl {
         public int MinutosTrabalhados;
+
+        private List<DateTime> feriados;
+        private int diasUteis;
         private readonly int _minutoExtra;
         readonly List<DiaTrabalhado> _diasRegistrados = new List<DiaTrabalhado>();
         private readonly double _p1;
@@ -22,15 +25,18 @@ namespace SGHE.View {
         private readonly double _pEn;
         private readonly double _salario;
         private double _horasExtrasNoturnas;
-
+        private readonly Panel _panel1;
+        private readonly int _horasMensais;
 
         public CadastroHoras(string nomeFuncionario, double salario, 
                             double p1, double p2, double pN,  int minutoExtra, 
-                            int horasMensais, double pEn) {
+                            int horasMensais, double pEn, Panel panel1) {
             InitializeComponent();
             MinutosTrabalhados = 0;
+            diasUteis = 0;
+            _panel1 = panel1;
             labelNome.Text = nomeFuncionario;            
-            labelSalario.Text = salario.ToString("0.00");
+            labelSalario.Text = "R$" + salario.ToString("0.00");
             _minutoExtra = minutoExtra;
             _p1 = p1;
             _p2 = p2;
@@ -38,6 +44,9 @@ namespace SGHE.View {
             _pEn = pEn;
             _salario = salario/horasMensais;
             _horasExtrasNoturnas = 0;
+            _horasMensais = horasMensais;
+            feriados = new List<DateTime>();
+            listFeriados(Convert.ToDateTime(DateTime.Now.ToString()).Year.ToString());
             SetCaixa();
         }
 
@@ -66,29 +75,64 @@ namespace SGHE.View {
             double valorSalarioExtra = 0;
             double valorSalarioNoturno = 0;
 
-            foreach (var t in _diasRegistrados) {
-                var valorHoraExtra = ControladorHoras.CalculaValorHoraExtra(t.HorasExtras, _p1, _p2, 
-                    _minutoExtra, _salario);
+            if(saldoTB.Text == "  :" || (Positivo.Checked == false && Negativo.Checked == false)){
+                MessageBox.Show("Informe o valor do saldo anterior do funcionário");
+            }else {
+                int horaSaldo = ControladorHoras.ConverteTextHora(saldoTB.Text);
+                int minutoSaldo = ControladorHoras.ConverteTextMinuto(saldoTB.Text);
 
-                valorSalarioExtra += valorHoraExtra;
+                int saldo = horaSaldo * 60 + minutoSaldo;
+                if (Negativo.Checked) saldo *= -1;
 
-                var valorHoraNoturna = ControladorHoras.CalculaValorHoraNoturna(t.HorasNoturnas, 
-                    _pN, _salario, _pEn, t.HorasExtrasNoturnas);
+                double horasExtrasTotais = 0;
+                double horasNoturnasTotais = 0;
+                double horasTrabalhadasTotais = 0;
 
-                valorSalarioNoturno += valorHoraNoturna;
+                foreach (var t in _diasRegistrados) {
+                    var valorHoraExtra = ControladorHoras.CalculaValorHoraExtra(t.HorasExtras, _p1, _p2,
+                        _minutoExtra, _salario);
 
-                valorSalario += ControladorHoras.CalculaValorSalario(_salario, valorHoraExtra, valorHoraNoturna,
-                    t.HorasNormais);
+                    horasExtrasTotais += t.HorasExtras;
+
+                    valorSalarioExtra += valorHoraExtra;
+
+                    var valorHoraNoturna = ControladorHoras.CalculaValorHoraNoturna(t.HorasNoturnas,
+                        _pN, _salario, _pEn, t.HorasExtrasNoturnas);
+
+                    horasNoturnasTotais += t.HorasNoturnas;
+
+                    valorSalarioNoturno += valorHoraNoturna;
+
+                    valorSalario += ControladorHoras.CalculaValorSalario(_salario, valorHoraExtra, valorHoraNoturna,
+                        t.HorasNormais);
+
+                    horasTrabalhadasTotais += t.HorasTotaisTrabalhadas;
+                }
+
+                _panel1.Controls.Clear();
+                Relatorio a = new Relatorio(labelNome.Text, saldo, _horasMensais/30, diasUteis, horasTrabalhadasTotais, horasExtrasTotais, horasNoturnasTotais,
+                                            valorSalario, valorSalarioExtra, valorSalarioNoturno);
+                _panel1.Controls.Add(a);
+
             }
 
-            MessageBox.Show(@"Valor total do salario: " + valorSalario);
-
-            MessageBox.Show(@"Valor total para horas extras: " + valorSalarioExtra);
-
-            MessageBox.Show(@"Valor total para horas noturnas: " + valorSalarioNoturno);
+            
         }
 
         private void labelNome_Click(object sender, EventArgs e) {
+
+        }
+
+        private void listFeriados(string anoS) {
+            int ano = Int32.Parse(anoS);
+            Calendario c = new Calendario(ano);
+            c = ControladorFeriados.CarregaFeriados(c);
+            for(int i = 0; i < c.Feriados.Count; i++) {
+                feriados.Add(new DateTime(ano, c.Feriados.ElementAt(i).Mes+1, c.Feriados.ElementAt(i).Dia+1, 0, 0, 0));
+            }
+
+            for(int i = 0; i < feriados.Count; i++) {
+            }
 
         }
 
@@ -120,7 +164,7 @@ namespace SGHE.View {
                     horasExtras = ControladorHoras.CalculaHorasExtras(horasTrabalhadasInicial, _minutoExtra,
                                                                       EntradaTB.Text, EntradaIntervalo.Text,
                                                                       SaidaIntervalo.Text, SaidaTB.Text);
-                    MessageBox.Show("Horas extras trabalhas" + horasExtras);
+                   // MessageBox.Show("Horas extras trabalhas" + horasExtras);
 
                     if (horasExtras > 0)
                         _horasExtrasNoturnas = ControladorHoras.CalculaHorasExtrasNoturnas(EntradaTB.Text,
@@ -129,12 +173,15 @@ namespace SGHE.View {
                     if (_horasExtrasNoturnas != 0) {
                         horasExtras += _horasExtrasNoturnas - horasExtras;
                     }
-                    MessageBox.Show("Horas extras noturnas" + _horasExtrasNoturnas);
+                   // MessageBox.Show("Horas extras noturnas" + _horasExtrasNoturnas);
 
                     horasTrabalhadasNormais = (horasTrabalhadasInicial - horasTrabalhadasNoite) - horasExtras;
+
+                    if (horasTrabalhadasNormais < 0) horasTrabalhadasNormais = 0;
+
                 } else { //NAO HOUVE INTERVALO
                     horasTrabalhadasInicial = ControladorHoras.CalculaHoras(EntradaTB.Text, SaidaTB.Text);
-                     MessageBox.Show("Horas totais trabalhadas"+horasTrabalhadasInicial);
+                     //MessageBox.Show("Horas totais trabalhadas"+horasTrabalhadasInicial);
 
                     horasTrabalhadasNoite = ControladorHoras.IdentificaHorasNoturnas(EntradaTB.Text, SaidaTB.Text);
                     //MessageBox.Show("Horas noturnas trabalhadas"+horasTrabalhadasNoite);
@@ -152,13 +199,17 @@ namespace SGHE.View {
                     if (_horasExtrasNoturnas != 0) {
                         horasExtras += _horasExtrasNoturnas - horasExtras;
                     }
-                    MessageBox.Show("Horas extras noturnas" + _horasExtrasNoturnas);
+                    //MessageBox.Show("Horas extras noturnas" + _horasExtrasNoturnas);
 
                     horasTrabalhadasNormais = (horasTrabalhadasInicial - horasTrabalhadasNoite) - horasExtras;
+
+                    if (horasTrabalhadasNormais < 0) horasTrabalhadasNormais = 0;
                 }
 
+                var horasTotais = (horasTrabalhadasInicial - horasTrabalhadasNoite) + horasNoturnas;
 
-                _diasRegistrados.Add(new DiaTrabalhado(horasExtras, horasTrabalhadasNormais, horasNoturnas, _horasExtrasNoturnas));
+                _diasRegistrados.Add(new DiaTrabalhado(horasTotais, horasExtras, horasTrabalhadasNormais,
+                                                       horasNoturnas, _horasExtrasNoturnas));
 
                 int day = monthCalendar1.SelectionRange.Start.Day;
                 int month = monthCalendar1.SelectionRange.Start.Month;
@@ -175,8 +226,6 @@ namespace SGHE.View {
                 a = a - horas;
 
                 int minutos = (int)Math.Ceiling(a / 0.016667);
-
-                Console.WriteLine("DEU MERDA" + minutos);
 
                 DateTime date1 = new DateTime(year, month, day, horas, minutos, 0);
 
@@ -240,9 +289,14 @@ namespace SGHE.View {
                     } else day++;
                 }
 
+                DateTime date4 = new DateTime(date1.Year, date1.Month, date1.Day, 0, 0, 0);
+
+                if (date4.DayOfWeek != DayOfWeek.Saturday && date4.DayOfWeek != DayOfWeek.Sunday && !feriados.Contains(date4)) {
+                    diasUteis++;
+                } 
+
                 DateTime d = new DateTime(year, month, day);
-
-
+                
                 monthCalendar1.SetDate(d);
 
                 SetCaixa();

@@ -72,7 +72,7 @@ namespace SGHE.View {
                 CadastroHoras a = new CadastroHoras(funcionarioTB.Text, Convert.ToDouble(salarioTB.Text),
                                                     Convert.ToDouble(primeiraHETB.Text), Convert.ToDouble(heTB.Text),
                                                     Convert.ToDouble(hnTB.Text), minuto1, Convert.ToInt32(horasMensais.Text),
-                                                    Convert.ToDouble(henTB.Text));
+                                                    Convert.ToDouble(henTB.Text), _panel1);
                 _panel1.Controls.Add(a);
             }
         }

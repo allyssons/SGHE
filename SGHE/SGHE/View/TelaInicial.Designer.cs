@@ -74,9 +74,9 @@
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.panel1.BackgroundImage = global::SGHE.Properties.Resources.clock_time_blue_background_wallpaper_768x480;
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(2, -1);
+            this.panel1.Location = new System.Drawing.Point(-7, -1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(751, 486);
+            this.panel1.Size = new System.Drawing.Size(760, 486);
             this.panel1.TabIndex = 13;
             this.panel1.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.panel1_ControlRemoved);
             // 

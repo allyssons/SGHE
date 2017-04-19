@@ -47,6 +47,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.saldoTB = new System.Windows.Forms.MaskedTextBox();
+            this.Positivo = new System.Windows.Forms.RadioButton();
+            this.Negativo = new System.Windows.Forms.RadioButton();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -55,7 +60,7 @@
             // 
             this.button2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.button2.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(565, 412);
+            this.button2.Location = new System.Drawing.Point(563, 424);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(140, 48);
             this.button2.TabIndex = 21;
@@ -101,9 +106,9 @@
             this.labelNome.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNome.Location = new System.Drawing.Point(286, 18);
             this.labelNome.Name = "labelNome";
-            this.labelNome.Size = new System.Drawing.Size(46, 18);
+            this.labelNome.Size = new System.Drawing.Size(79, 18);
             this.labelNome.TabIndex = 23;
-            this.labelNome.Text = "label6";
+            this.labelNome.Text = "nomeLabel";
             this.labelNome.Click += new System.EventHandler(this.labelNome_Click);
             // 
             // labelSalario
@@ -139,7 +144,7 @@
             // 
             this.monthCalendar1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.monthCalendar1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.monthCalendar1.Location = new System.Drawing.Point(515, 119);
+            this.monthCalendar1.Location = new System.Drawing.Point(501, 119);
             this.monthCalendar1.MaxSelectionCount = 1;
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 32;
@@ -290,11 +295,67 @@
             this.label3.TabIndex = 36;
             this.label3.Text = "Preencha os campos abaixo caso houve ";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Modern No. 20", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(498, 310);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(183, 17);
+            this.label9.TabIndex = 37;
+            this.label9.Text = "Saldo acumulado do período ";
+            // 
+            // saldoTB
+            // 
+            this.saldoTB.Location = new System.Drawing.Point(501, 358);
+            this.saldoTB.Mask = "00:00";
+            this.saldoTB.Name = "saldoTB";
+            this.saldoTB.Size = new System.Drawing.Size(34, 20);
+            this.saldoTB.TabIndex = 47;
+            this.saldoTB.ValidatingType = typeof(System.DateTime);
+            // 
+            // Positivo
+            // 
+            this.Positivo.AutoSize = true;
+            this.Positivo.Location = new System.Drawing.Point(551, 361);
+            this.Positivo.Name = "Positivo";
+            this.Positivo.Size = new System.Drawing.Size(62, 17);
+            this.Positivo.TabIndex = 48;
+            this.Positivo.TabStop = true;
+            this.Positivo.Text = "Positivo";
+            this.Positivo.UseVisualStyleBackColor = true;
+            // 
+            // Negativo
+            // 
+            this.Negativo.AutoSize = true;
+            this.Negativo.Location = new System.Drawing.Point(619, 361);
+            this.Negativo.Name = "Negativo";
+            this.Negativo.Size = new System.Drawing.Size(68, 17);
+            this.Negativo.TabIndex = 49;
+            this.Negativo.TabStop = true;
+            this.Negativo.Text = "Negativo";
+            this.Negativo.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Modern No. 20", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(498, 327);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(138, 17);
+            this.label10.TabIndex = 50;
+            this.label10.Text = "anterior ao calculado";
+            // 
             // CadastroHoras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.Negativo);
+            this.Controls.Add(this.Positivo);
+            this.Controls.Add(this.saldoTB);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.labelSalario);
@@ -338,5 +399,10 @@
         private System.Windows.Forms.MaskedTextBox SaidaIntervalo;
         private System.Windows.Forms.MaskedTextBox EntradaIntervalo;
         private System.Windows.Forms.MaskedTextBox SaidaTB;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.MaskedTextBox saldoTB;
+        private System.Windows.Forms.RadioButton Positivo;
+        private System.Windows.Forms.RadioButton Negativo;
+        private System.Windows.Forms.Label label10;
     }
 }
