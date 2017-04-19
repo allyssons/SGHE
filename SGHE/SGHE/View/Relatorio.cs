@@ -7,11 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System;
+using iTextSharp;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using System.IO;
-using System.Drawing;
-using System.Drawing.Printing;
-using System.Windows.Forms;
 
 namespace SGHE.View {
     public partial class Relatorio : UserControl {
@@ -84,7 +83,35 @@ namespace SGHE.View {
             return (int)Math.Ceiling(a / 0.016667);
         }
         private void button1_Click(object sender, EventArgs e) {
-           
+            Document doc = new Document(PageSize.A4);//criando e estipulando o tipo da folha usada
+            doc.SetMargins(40, 40, 40, 80);//estibulando o espaçamento das margens que queremos
+            doc.AddCreationDate();//adicionando as configuracoes
+
+            //caminho onde sera criado o pdf + nome desejado
+            //OBS: o nome sempre deve ser terminado com .pdf
+            string caminho = @"C:\" + "CONTRATO.pdf";
+
+            //criando o arquivo pdf embranco, passando como parametro a variavel                
+            //doc criada acima e a variavel caminho 
+            //tambem criada acima.
+            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(caminho, FileMode.Create));
+
+            doc.Open();
+
+            //criando uma string vazia
+            string dados = "";
+
+            //criando a variavel para paragrafo
+            Paragraph paragrafo = new Paragraph(dados, new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 14));
+            //etipulando o alinhamneto
+            paragrafo.Alignment = Element.ALIGN_JUSTIFIED;
+            //Alinhamento Justificado
+            //adicioando texto
+            paragrafo.Add("TESTE TESTE TESTE");
+            //acidionado paragrafo ao documento
+            doc.Add(paragrafo);
+            //fechando documento para que seja salva as alteraçoes.
+            doc.Close();
         }
        
     }
