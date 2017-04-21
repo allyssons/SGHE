@@ -43,19 +43,20 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.heTB = new System.Windows.Forms.TextBox();
             this.primeiraHETB = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.henTB = new System.Windows.Forms.TextBox();
             this.hnTB = new System.Windows.Forms.TextBox();
-            this.fdsTB = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.Negativo = new System.Windows.Forms.RadioButton();
             this.Positivo = new System.Windows.Forms.RadioButton();
             this.saldoTB = new System.Windows.Forms.MaskedTextBox();
-            this.label18 = new System.Windows.Forms.Label();
+            this.fdsTB = new System.Windows.Forms.TextBox();
+            this.henTB = new System.Windows.Forms.TextBox();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // funcionarioTB
@@ -269,43 +270,14 @@
             this.primeiraHETB.Text = "50";
             this.primeiraHETB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.button1.Font = new System.Drawing.Font("Modern No. 20", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(591, 422);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(142, 47);
-            this.button1.TabIndex = 67;
-            this.button1.Text = "Calcular horas";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // henTB
-            // 
-            this.henTB.Location = new System.Drawing.Point(679, 241);
-            this.henTB.Name = "henTB";
-            this.henTB.Size = new System.Drawing.Size(24, 20);
-            this.henTB.TabIndex = 72;
-            this.henTB.Text = "20";
-            this.henTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
-            // 
             // hnTB
             // 
-            this.hnTB.Location = new System.Drawing.Point(679, 209);
+            this.hnTB.Location = new System.Drawing.Point(422, 80);
             this.hnTB.Name = "hnTB";
             this.hnTB.Size = new System.Drawing.Size(24, 20);
             this.hnTB.TabIndex = 71;
             this.hnTB.Text = "20";
             this.hnTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox7_KeyPress);
-            // 
-            // fdsTB
-            // 
-            this.fdsTB.Location = new System.Drawing.Point(679, 273);
-            this.fdsTB.Name = "fdsTB";
-            this.fdsTB.Size = new System.Drawing.Size(24, 20);
-            this.fdsTB.TabIndex = 75;
-            this.fdsTB.Text = "100";
             // 
             // label4
             // 
@@ -346,6 +318,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel1.Controls.Add(this.hnTB);
             this.panel1.Location = new System.Drawing.Point(257, 129);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(476, 187);
@@ -362,38 +335,6 @@
             this.label17.TabIndex = 82;
             this.label17.Text = "anterior ao calculado";
             // 
-            // Negativo
-            // 
-            this.Negativo.AutoSize = true;
-            this.Negativo.Location = new System.Drawing.Point(136, 393);
-            this.Negativo.Name = "Negativo";
-            this.Negativo.Size = new System.Drawing.Size(68, 17);
-            this.Negativo.TabIndex = 81;
-            this.Negativo.TabStop = true;
-            this.Negativo.Text = "Negativo";
-            this.Negativo.UseVisualStyleBackColor = true;
-            // 
-            // Positivo
-            // 
-            this.Positivo.AutoSize = true;
-            this.Positivo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Positivo.Location = new System.Drawing.Point(68, 393);
-            this.Positivo.Name = "Positivo";
-            this.Positivo.Size = new System.Drawing.Size(62, 17);
-            this.Positivo.TabIndex = 80;
-            this.Positivo.TabStop = true;
-            this.Positivo.Text = "Positivo";
-            this.Positivo.UseVisualStyleBackColor = true;
-            // 
-            // saldoTB
-            // 
-            this.saldoTB.Location = new System.Drawing.Point(18, 390);
-            this.saldoTB.Mask = "00:00";
-            this.saldoTB.Name = "saldoTB";
-            this.saldoTB.Size = new System.Drawing.Size(34, 20);
-            this.saldoTB.TabIndex = 79;
-            this.saldoTB.ValidatingType = typeof(System.DateTime);
-            // 
             // label18
             // 
             this.label18.AutoSize = true;
@@ -405,23 +346,81 @@
             this.label18.TabIndex = 78;
             this.label18.Text = "Saldo acumulado do período ";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.button1.Font = new System.Drawing.Font("Modern No. 20", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(591, 425);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(142, 47);
+            this.button1.TabIndex = 89;
+            this.button1.Text = "Calcular horas";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // Negativo
+            // 
+            this.Negativo.AutoSize = true;
+            this.Negativo.Location = new System.Drawing.Point(136, 393);
+            this.Negativo.Name = "Negativo";
+            this.Negativo.Size = new System.Drawing.Size(68, 17);
+            this.Negativo.TabIndex = 88;
+            this.Negativo.TabStop = true;
+            this.Negativo.Text = "Negativo";
+            this.Negativo.UseVisualStyleBackColor = true;
+            // 
+            // Positivo
+            // 
+            this.Positivo.AutoSize = true;
+            this.Positivo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Positivo.Location = new System.Drawing.Point(68, 393);
+            this.Positivo.Name = "Positivo";
+            this.Positivo.Size = new System.Drawing.Size(62, 17);
+            this.Positivo.TabIndex = 87;
+            this.Positivo.TabStop = true;
+            this.Positivo.Text = "Positivo";
+            this.Positivo.UseVisualStyleBackColor = true;
+            // 
+            // saldoTB
+            // 
+            this.saldoTB.Location = new System.Drawing.Point(18, 390);
+            this.saldoTB.Mask = "000:00";
+            this.saldoTB.Name = "saldoTB";
+            this.saldoTB.Size = new System.Drawing.Size(40, 20);
+            this.saldoTB.TabIndex = 86;
+            // 
+            // fdsTB
+            // 
+            this.fdsTB.Location = new System.Drawing.Point(679, 273);
+            this.fdsTB.Name = "fdsTB";
+            this.fdsTB.Size = new System.Drawing.Size(24, 20);
+            this.fdsTB.TabIndex = 85;
+            this.fdsTB.Text = "100";
+            // 
+            // henTB
+            // 
+            this.henTB.Location = new System.Drawing.Point(679, 241);
+            this.henTB.Name = "henTB";
+            this.henTB.Size = new System.Drawing.Size(24, 20);
+            this.henTB.TabIndex = 84;
+            this.henTB.Text = "20";
+            // 
             // CadastroFuncionario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Controls.Add(this.label17);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.Negativo);
             this.Controls.Add(this.Positivo);
             this.Controls.Add(this.saldoTB);
+            this.Controls.Add(this.fdsTB);
+            this.Controls.Add(this.henTB);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label16);
-            this.Controls.Add(this.fdsTB);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.henTB);
-            this.Controls.Add(this.hnTB);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -444,8 +443,9 @@
             this.Controls.Add(this.funcionarioTB);
             this.Controls.Add(this.panel1);
             this.Name = "CadastroFuncionario";
-            this.Size = new System.Drawing.Size(751, 486);
-            this.Load += new System.EventHandler(this.CadastroFuncionario_Load);
+            this.Size = new System.Drawing.Size(760, 486);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -473,18 +473,18 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox heTB;
         private System.Windows.Forms.TextBox primeiraHETB;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox henTB;
         private System.Windows.Forms.TextBox hnTB;
-        private System.Windows.Forms.TextBox fdsTB;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RadioButton Negativo;
         private System.Windows.Forms.RadioButton Positivo;
         private System.Windows.Forms.MaskedTextBox saldoTB;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox fdsTB;
+        private System.Windows.Forms.TextBox henTB;
     }
 }

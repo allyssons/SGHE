@@ -231,8 +231,14 @@ namespace SGHE.View {
                     
                     if (saldoAux < 0 && horasExtras > 0) {
                         saldoAux = horasExtras + saldoAux;
-                        horasCompensadas = horasExtras - saldoAux;
-                        horasExtras = horasExtras - horasCompensadas;
+                        if (saldoAux < 0) {
+                            horasCompensadas = horasExtras;
+                            horasExtras = 0;
+                        }else {
+                            horasCompensadas = horasExtras - saldoAux;
+                            horasExtras = horasExtras - horasCompensadas;
+                        }
+                        
                     }
 
                     if (horasExtras > 0)
