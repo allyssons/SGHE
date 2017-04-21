@@ -192,6 +192,7 @@
             this.horaTB.TabIndex = 57;
             this.horaTB.Text = "0200";
             this.horaTB.ValidatingType = typeof(System.DateTime);
+            this.horaTB.Click += new System.EventHandler(this.horaTB_Click);
             // 
             // horasMensais
             // 
@@ -388,6 +389,7 @@
             this.saldoTB.Name = "saldoTB";
             this.saldoTB.Size = new System.Drawing.Size(40, 20);
             this.saldoTB.TabIndex = 86;
+            this.saldoTB.Click += new System.EventHandler(this.saldoTB_Click);
             // 
             // fdsTB
             // 

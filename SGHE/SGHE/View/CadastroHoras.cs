@@ -373,5 +373,21 @@ namespace SGHE.View {
 
             SetCaixa();
         }
+
+        private void EntradaTB_Click(object sender, EventArgs e) {
+            EntradaTB.SelectionStart = 0;
+        }
+
+        private void SaidaTB_Click(object sender, EventArgs e) {
+            SaidaTB.SelectionStart = 0;
+        }
+
+        private void EntradaIntervalo_Click(object sender, EventArgs e) {
+            EntradaIntervalo.SelectionStart = 0;
+        }
+
+        private void SaidaIntervalo_Click(object sender, EventArgs e) {
+            SaidaIntervalo.SelectionStart = 0;
+        }
     }
 }

@@ -133,5 +133,13 @@ namespace SGHE.View {
                 }
             }
         }
+
+        private void horaTB_Click(object sender, EventArgs e) {
+            horaTB.SelectionStart = 0;
+        }
+
+        private void saldoTB_Click(object sender, EventArgs e) {
+            saldoTB.SelectionStart = 0;
+        }
     }
 }

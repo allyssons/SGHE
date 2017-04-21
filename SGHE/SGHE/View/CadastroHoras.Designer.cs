@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -34,6 +34,11 @@
             this.EntradaTB = new System.Windows.Forms.MaskedTextBox();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HorasTrabalhadas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HorasExtras = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HorasNoturnas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HorasCompensadas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.SaidaIntervalo = new System.Windows.Forms.MaskedTextBox();
@@ -43,11 +48,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HorasTrabalhadas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HorasExtras = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HorasNoturnas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HorasCompensadas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -135,6 +135,7 @@
             this.EntradaTB.Size = new System.Drawing.Size(34, 20);
             this.EntradaTB.TabIndex = 26;
             this.EntradaTB.ValidatingType = typeof(System.DateTime);
+            this.EntradaTB.Click += new System.EventHandler(this.EntradaTB_Click);
             // 
             // monthCalendar1
             // 
@@ -149,14 +150,14 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Data,
@@ -169,6 +170,31 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(543, 150);
             this.dataGridView1.TabIndex = 33;
+            // 
+            // Data
+            // 
+            this.Data.HeaderText = "Data";
+            this.Data.Name = "Data";
+            // 
+            // HorasTrabalhadas
+            // 
+            this.HorasTrabalhadas.HeaderText = "Horas Trabalhadas";
+            this.HorasTrabalhadas.Name = "HorasTrabalhadas";
+            // 
+            // HorasExtras
+            // 
+            this.HorasExtras.HeaderText = "Horas Extras";
+            this.HorasExtras.Name = "HorasExtras";
+            // 
+            // HorasNoturnas
+            // 
+            this.HorasNoturnas.HeaderText = "Horas Noturnas";
+            this.HorasNoturnas.Name = "HorasNoturnas";
+            // 
+            // HorasCompensadas
+            // 
+            this.HorasCompensadas.HeaderText = "Horas Compensadas";
+            this.HorasCompensadas.Name = "HorasCompensadas";
             // 
             // panel1
             // 
@@ -209,6 +235,7 @@
             this.SaidaIntervalo.Size = new System.Drawing.Size(34, 20);
             this.SaidaIntervalo.TabIndex = 45;
             this.SaidaIntervalo.ValidatingType = typeof(System.DateTime);
+            this.SaidaIntervalo.Click += new System.EventHandler(this.SaidaIntervalo_Click);
             // 
             // EntradaIntervalo
             // 
@@ -218,6 +245,7 @@
             this.EntradaIntervalo.Size = new System.Drawing.Size(34, 20);
             this.EntradaIntervalo.TabIndex = 44;
             this.EntradaIntervalo.ValidatingType = typeof(System.DateTime);
+            this.EntradaIntervalo.Click += new System.EventHandler(this.EntradaIntervalo_Click);
             // 
             // SaidaTB
             // 
@@ -227,6 +255,7 @@
             this.SaidaTB.Size = new System.Drawing.Size(34, 20);
             this.SaidaTB.TabIndex = 43;
             this.SaidaTB.ValidatingType = typeof(System.DateTime);
+            this.SaidaTB.Click += new System.EventHandler(this.SaidaTB_Click);
             // 
             // label8
             // 
@@ -271,31 +300,6 @@
             this.label3.Size = new System.Drawing.Size(215, 15);
             this.label3.TabIndex = 36;
             this.label3.Text = "Preencha os campos abaixo caso houve ";
-            // 
-            // Data
-            // 
-            this.Data.HeaderText = "Data";
-            this.Data.Name = "Data";
-            // 
-            // HorasTrabalhadas
-            // 
-            this.HorasTrabalhadas.HeaderText = "Horas Trabalhadas";
-            this.HorasTrabalhadas.Name = "HorasTrabalhadas";
-            // 
-            // HorasExtras
-            // 
-            this.HorasExtras.HeaderText = "Horas Extras";
-            this.HorasExtras.Name = "HorasExtras";
-            // 
-            // HorasNoturnas
-            // 
-            this.HorasNoturnas.HeaderText = "Horas Noturnas";
-            this.HorasNoturnas.Name = "HorasNoturnas";
-            // 
-            // HorasCompensadas
-            // 
-            this.HorasCompensadas.HeaderText = "Horas Compensadas";
-            this.HorasCompensadas.Name = "HorasCompensadas";
             // 
             // CadastroHoras
             // 
