@@ -254,6 +254,10 @@ namespace SGHE.Controller {
             return minutosResultantes;
         }
 
+        public static double BonusFDS(double valorSalarioAux, double _pFds) {
+            return valorSalarioAux += valorSalarioAux * (_pFds / 100);
+        }
+
         public static int IdentificaHorasNoturnas(string text1, string text2) {
             int hora1 = ConverteTextHora(text1);
             int minuto1 = ConverteTextMinuto(text1);

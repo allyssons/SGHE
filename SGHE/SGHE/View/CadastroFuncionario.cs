@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SGHE.Controller;
 
 namespace SGHE.View {
     public partial class CadastroFuncionario : UserControl {
@@ -59,21 +60,31 @@ namespace SGHE.View {
             if (funcionarioTB.Text == "" || salarioTB.Text == "") {
                 MessageBox.Show("Valores dos campos estão nulos!");
             } else {
-                string text1 = horaTB.Text;
-                _panel1.Controls.Clear();
-                string horaA = text1.Split(':')[0];
-                string minutoA = text1.Split(':')[1];
-                int hora1 = Int32.Parse(horaA);
-                int minuto1 = 0;
-                if (minutoA == "") minuto1 = 0;
-                else minuto1 = Int32.Parse(minutoA);
+                if (saldoTB.Text == "  :" || (Positivo.Checked == false && Negativo.Checked == false)) {
+                    MessageBox.Show("Informe o valor do saldo anterior do funcionário");
+                } else {
+                    int horaSaldo = ControladorHoras.ConverteTextHora(saldoTB.Text);
+                    int minutoSaldo = ControladorHoras.ConverteTextMinuto(saldoTB.Text);
 
-                minuto1 += hora1 * 60;
-                CadastroHoras a = new CadastroHoras(funcionarioTB.Text, Convert.ToDouble(salarioTB.Text),
-                                                    Convert.ToDouble(primeiraHETB.Text), Convert.ToDouble(heTB.Text),
-                                                    Convert.ToDouble(hnTB.Text), minuto1, Convert.ToInt32(horasMensais.Text),
-                                                    Convert.ToDouble(henTB.Text), _panel1);
-                _panel1.Controls.Add(a);
+                    int saldo = horaSaldo * 60 + minutoSaldo;
+                    if (Negativo.Checked) saldo *= -1;
+
+                    string text1 = horaTB.Text;
+                    _panel1.Controls.Clear();
+                    string horaA = text1.Split(':')[0];
+                    string minutoA = text1.Split(':')[1];
+                    int hora1 = Int32.Parse(horaA);
+                    int minuto1 = 0;
+                    if (minutoA == "") minuto1 = 0;
+                    else minuto1 = Int32.Parse(minutoA);
+
+                    minuto1 += hora1 * 60;
+                    CadastroHoras a = new CadastroHoras(funcionarioTB.Text, Convert.ToDouble(salarioTB.Text),
+                                                        Convert.ToDouble(primeiraHETB.Text), Convert.ToDouble(heTB.Text),
+                                                        Convert.ToDouble(hnTB.Text), minuto1, Convert.ToInt32(horasMensais.Text),
+                                                        Convert.ToDouble(henTB.Text), Convert.ToDouble(fdsTB.Text), saldo, _panel1);
+                    _panel1.Controls.Add(a);
+                }
             }
         }
 

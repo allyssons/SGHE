@@ -34,10 +34,6 @@
             this.EntradaTB = new System.Windows.Forms.MaskedTextBox();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HorasTrabalhadas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HorasExtras = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HorasNoturnas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.SaidaIntervalo = new System.Windows.Forms.MaskedTextBox();
@@ -47,11 +43,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.saldoTB = new System.Windows.Forms.MaskedTextBox();
-            this.Positivo = new System.Windows.Forms.RadioButton();
-            this.Negativo = new System.Windows.Forms.RadioButton();
-            this.label10 = new System.Windows.Forms.Label();
+            this.Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HorasTrabalhadas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HorasExtras = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HorasNoturnas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HorasCompensadas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -60,7 +56,7 @@
             // 
             this.button2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.button2.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(563, 424);
+            this.button2.Location = new System.Drawing.Point(588, 412);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(140, 48);
             this.button2.TabIndex = 21;
@@ -166,32 +162,13 @@
             this.Data,
             this.HorasTrabalhadas,
             this.HorasExtras,
-            this.HorasNoturnas});
+            this.HorasNoturnas,
+            this.HorasCompensadas});
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonShadow;
             this.dataGridView1.Location = new System.Drawing.Point(28, 310);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(445, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(543, 150);
             this.dataGridView1.TabIndex = 33;
-            // 
-            // Data
-            // 
-            this.Data.HeaderText = "Data";
-            this.Data.Name = "Data";
-            // 
-            // HorasTrabalhadas
-            // 
-            this.HorasTrabalhadas.HeaderText = "Horas Trabalhadas";
-            this.HorasTrabalhadas.Name = "HorasTrabalhadas";
-            // 
-            // HorasExtras
-            // 
-            this.HorasExtras.HeaderText = "Horas Extras";
-            this.HorasExtras.Name = "HorasExtras";
-            // 
-            // HorasNoturnas
-            // 
-            this.HorasNoturnas.HeaderText = "Horas Noturnas";
-            this.HorasNoturnas.Name = "HorasNoturnas";
             // 
             // panel1
             // 
@@ -295,67 +272,36 @@
             this.label3.TabIndex = 36;
             this.label3.Text = "Preencha os campos abaixo caso houve ";
             // 
-            // label9
+            // Data
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Modern No. 20", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(498, 310);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(183, 17);
-            this.label9.TabIndex = 37;
-            this.label9.Text = "Saldo acumulado do período ";
+            this.Data.HeaderText = "Data";
+            this.Data.Name = "Data";
             // 
-            // saldoTB
+            // HorasTrabalhadas
             // 
-            this.saldoTB.Location = new System.Drawing.Point(501, 358);
-            this.saldoTB.Mask = "00:00";
-            this.saldoTB.Name = "saldoTB";
-            this.saldoTB.Size = new System.Drawing.Size(34, 20);
-            this.saldoTB.TabIndex = 47;
-            this.saldoTB.ValidatingType = typeof(System.DateTime);
+            this.HorasTrabalhadas.HeaderText = "Horas Trabalhadas";
+            this.HorasTrabalhadas.Name = "HorasTrabalhadas";
             // 
-            // Positivo
+            // HorasExtras
             // 
-            this.Positivo.AutoSize = true;
-            this.Positivo.Location = new System.Drawing.Point(551, 361);
-            this.Positivo.Name = "Positivo";
-            this.Positivo.Size = new System.Drawing.Size(62, 17);
-            this.Positivo.TabIndex = 48;
-            this.Positivo.TabStop = true;
-            this.Positivo.Text = "Positivo";
-            this.Positivo.UseVisualStyleBackColor = true;
+            this.HorasExtras.HeaderText = "Horas Extras";
+            this.HorasExtras.Name = "HorasExtras";
             // 
-            // Negativo
+            // HorasNoturnas
             // 
-            this.Negativo.AutoSize = true;
-            this.Negativo.Location = new System.Drawing.Point(619, 361);
-            this.Negativo.Name = "Negativo";
-            this.Negativo.Size = new System.Drawing.Size(68, 17);
-            this.Negativo.TabIndex = 49;
-            this.Negativo.TabStop = true;
-            this.Negativo.Text = "Negativo";
-            this.Negativo.UseVisualStyleBackColor = true;
+            this.HorasNoturnas.HeaderText = "Horas Noturnas";
+            this.HorasNoturnas.Name = "HorasNoturnas";
             // 
-            // label10
+            // HorasCompensadas
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Modern No. 20", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(498, 327);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(138, 17);
-            this.label10.TabIndex = 50;
-            this.label10.Text = "anterior ao calculado";
+            this.HorasCompensadas.HeaderText = "Horas Compensadas";
+            this.HorasCompensadas.Name = "HorasCompensadas";
             // 
             // CadastroHoras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.Negativo);
-            this.Controls.Add(this.Positivo);
-            this.Controls.Add(this.saldoTB);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.labelSalario);
@@ -386,10 +332,6 @@
         private System.Windows.Forms.MaskedTextBox EntradaTB;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Data;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HorasTrabalhadas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HorasExtras;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HorasNoturnas;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
@@ -399,10 +341,10 @@
         private System.Windows.Forms.MaskedTextBox SaidaIntervalo;
         private System.Windows.Forms.MaskedTextBox EntradaIntervalo;
         private System.Windows.Forms.MaskedTextBox SaidaTB;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.MaskedTextBox saldoTB;
-        private System.Windows.Forms.RadioButton Positivo;
-        private System.Windows.Forms.RadioButton Negativo;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Data;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HorasTrabalhadas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HorasExtras;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HorasNoturnas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HorasCompensadas;
     }
 }
